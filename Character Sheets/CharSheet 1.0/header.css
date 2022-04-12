@@ -1,0 +1,16 @@
+.sheet {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-bar {
+  display: flex;
+  font-size: 20px;
+  justify-content: space-evenly;
+}
+
+.underlined {
+  border: none;
+  border-bottom: 1px solid black;
+  background-color: rgb(235, 213, 179);
+}

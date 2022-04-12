@@ -1,0 +1,29 @@
+.core-stats-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  margin-left: 10px;
+}
+
+.core-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  width: 100%;
+  font-size: 19px;
+  margin: 10px 0;
+  padding: 6px 0;
+  border-radius: 10px;
+  height: 50px;
+  background-color: white;
+}
+
+.core-stat img {
+  width: 25%;
+  margin-top: 4px;
+}
