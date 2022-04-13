@@ -19,6 +19,7 @@
   width: 0;
   flex: 1;
   max-width: 300px;
+  border-radius: 0;
   border-bottom: 1px solid black;
   background-color: rgb(235, 213, 179);
 }
