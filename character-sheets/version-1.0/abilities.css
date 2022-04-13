@@ -1,0 +1,12 @@
+.abilities-container {
+  margin: 10px 0 0 10px;
+}
+
+.ability {
+  cursor: pointer;
+  padding: 2px 0;
+}
+
+.ability:hover {
+  background-color: gray;
+}
