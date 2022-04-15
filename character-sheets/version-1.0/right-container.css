@@ -1,4 +1,25 @@
 .right-container {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
+
+.numbered-stats {
+  display: flex;
+  justify-content: space-between;
+}
+
+.combat-stats-container, .other-stats-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.sliders {
+  display: flex;
+}
+
+.slider {
+  flex: 1;
+}
+
