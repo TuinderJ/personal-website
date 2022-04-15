@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  margin-right: 10px;
 }
 
 .numbered-stats {
@@ -15,11 +16,58 @@
   flex: 1;
 }
 
+.combat-stat, .other-stat {
+  display: flex;
+  padding: 4px 0;
+  align-items: center;
+  justify-content: right;
+}
+
+.circle {
+  display: flex;
+  background-color: white;
+  border: 1px solid black;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
 .sliders {
   display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.slider-stat-block {
+  flex: 1;
+  text-align: center;
+}
+
+.slider-stat {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-align: center;
 }
 
 .slider {
   flex: 1;
+  border: 1px solid black;
+  background-color: white;
+  height: 16px;
+  max-width: 150px;
+  margin: 1px auto;
 }
 
+.slider-number {
+  text-align: center;
+}
+
+/* .actions-container {
+  border: 1px solid grey;
+  border-radius: 10px;
+  height: 300px;
+} */
