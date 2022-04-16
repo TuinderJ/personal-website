@@ -1,8 +1,10 @@
 .core-stats-container {
   display: flex;
   flex-direction: column;
-  margin: 0 10px;
+  margin-right: 10px;
+  padding: 10px 5px;
   /* border: 1px solid yellow; */
+  /* background-color: rgb(233, 205, 164); */
 }
 
 .core-stat-block {

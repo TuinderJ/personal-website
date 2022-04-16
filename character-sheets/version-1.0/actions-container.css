@@ -1,0 +1,7 @@
+.actions-container {
+  border: 3px solid grey;
+  border-radius: 10px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
