@@ -1,0 +1,40 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#unit-number, #customer-unit-number{
+  max-width: 200px;
+}
+
+.main-content {
+  width: max-content;
+}
+
+.output {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid black; */
+}
+
+.dataset {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  justify-content: space-between;
+  padding: 4px;
+}
+
+.label {
+  /* border: 1px solid red; */
+  margin-right: 5px;
+}
+
+.value {
+  border: none;
+  background-color: inherit;
+  color: inherit;
+  font: inherit;
+  cursor: text;
+}
