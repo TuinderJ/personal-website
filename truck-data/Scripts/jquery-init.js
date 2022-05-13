@@ -1,6 +1,6 @@
 let data = {};
 
-$.get("database.csv", function(response, status) {
+$.get("../database.csv", function(response, status) {
   if(status=="success") {
     data = $.csv.toObjects(response);
     let html = '';
