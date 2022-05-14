@@ -1,6 +1,5 @@
 body {
   display: flex;
-  flex-direction: column;
 }
 
 #unit-number, #customer-unit-number{
@@ -8,7 +7,7 @@ body {
 }
 
 .main-content {
-  width:max-content;
+  width: max-content;
 }
 
 .output {
@@ -37,4 +36,23 @@ body {
   color: inherit;
   font: inherit;
   cursor: text;
+}
+
+.menu {
+  margin: 0 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-button {
+  margin: 5px 0;
+  font-size: large;
+  padding: 1px 20px;
+  border-radius: 20px;
+  border: 1px solid black;
+  opacity: .5;
+}
+
+.menu-button:hover {
+  opacity: 1;
 }

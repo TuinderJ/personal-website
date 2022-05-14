@@ -7,20 +7,20 @@
     <title>Filter Test</title>
     <link rel="stylesheet" href="styles.css" />
     <script
-    src="https://code.jquery.com/jquery-3.6.0.js"
-    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous"
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
     ></script>
     <script src="Scripts/jquery.csv.js"></script>
     <script src="scripts/jquery-init.js"></script>
   </head>
   <body>
     <main class="main-content">
-      <div class="inputs">
+      <div class="inputs" id="inputs">
         <div class="dataset">
           <div class="label">Unit Number:</div>
           <div class="value-container">
-            <input id="unit-number" value = "272171"></input>
+            <input class= "input-value" id="unit-number" value = "272171"></input>
           </div>
         </div>
         <div class="dataset">
@@ -28,8 +28,15 @@
           <input id="customer-unit-number"></input>
         </div>
       </div>
-      <div class="output" id='output'></div>
+      <div class="output" id='output'>
+      </div>
     </main>
+    <div class="menu">
+      <button class="menu-button">Add Truck</button>
+      <button class="menu-button">Edit Truck</button>
+      <button class="menu-button">Remove Truck</button>
+      <button class="menu-button">Replace Filter</button>
+    </div>
   </body>
   <script src="Scripts/scripts.js"></script>
 </html>

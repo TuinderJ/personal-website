@@ -45,27 +45,31 @@ function searchForTruck(searchCondition) {
       }
     }
   }
-
-  this.values = document.getElementsByClassName('value-container')
-  for(let i = 0; i < values.length; i++) {
-    values[i].addEventListener('click', function(event) {
-      navigator.clipboard.writeText(event.currentTarget.children[0].value);
-    })
-  }
 }
 
-const unitNumberInput = document.getElementById('unit-number');
-unitNumberInput.addEventListener('keypress', function(event) {
+document.getElementById('unit-number').addEventListener('keypress', function(event) {
   if(event.key === "Enter") {
     searchForTruck('Unit Number');
     event.currentTarget.select();
   }
 })
 
-const customerUnitNumberInput = document.getElementById('customer-unit-number');
-customerUnitNumberInput.addEventListener('keypress', function(event) {
+document.getElementById('customer-unit-number').addEventListener('keypress', function(event) {
   if(event.key === "Enter") {
     searchForTruck('Customer Unit Number');
     event.currentTarget.select();
+  }
+})
+
+document.getElementById('output').addEventListener('click', e => {
+  let clicked
+  if(e.target.matches('.value')) {
+    clicked = e.target
+  }
+  if(e.target.closest('.value')) {
+    clicked = e.target
+  }
+  if(clicked != null) {
+    navigator.clipboard.writeText(clicked.value)
   }
 })
