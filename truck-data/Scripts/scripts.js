@@ -157,8 +157,17 @@ function editCurrentTruck() {
 }
 
 function submitTruckEdit () {
-  const newTruckForm = document.getElementById('new-truck-form');
+  const newTruckForm = document.getElementById('new-truck-form')
+  const newData = newTruckForm.getElementsByClassName('value')
+  let i = 0
+  for (key in data[currentTruckIndex]) {
+    data[currentTruckIndex][key] = newData[i].value
+    i++
+  }
+
   newTruckForm.remove();
+
+  searchForTruck('Unit Number')
 }
 
 document.getElementById('unit-number').addEventListener('keypress', function(event) {
