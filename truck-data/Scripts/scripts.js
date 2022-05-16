@@ -18,24 +18,32 @@ $.get("database.csv", function(response, status) {
 
 function searchForTruck(searchCondition) {
   const output = document.getElementById('output')
-  output.innerHTML = ''
-  const copyText = document.createElement('div')
-  copyText.classList.add('copy-text')
-  copyText.innerText = 'Left click on any value below to copy it.'
-  output.appendChild(copyText)
   const unitNumberInput = document.getElementById('unit-number')
   const customerUnitNumberInput = document.getElementById('customer-unit-number')
-  let unitNumberToSearch = ''
+  let unitNumberToSearch
+  currentTruckIndex = undefined
   
-  if(searchCondition == 'Unit Number') {
+  if(searchCondition === 'Unit Number') {
     unitNumberToSearch = unitNumberInput.value
-  } else {
+  } else if (searchCondition === 'Customer Unit Number') {
     unitNumberToSearch = customerUnitNumberInput.value
   }
+
+  if (unitNumberToSearch === '') {
+    output.innerHTML = ''
+    alert('Please enter a unit number or customer unit number.')
+    return
+  }
+  
   
   for(let i = 0; i < data.length; i++) {
-    if(data[i][searchCondition].indexOf(unitNumberToSearch) >= 0) {
+    if(data[i][searchCondition] === unitNumberToSearch) {
       currentTruckIndex = i
+      output.innerHTML = ''
+      const copyText = document.createElement('div')
+      copyText.classList.add('copy-text')
+      copyText.innerText = 'Left click on any value below to copy it.'
+      output.appendChild(copyText)
       unitNumberInput.value = data[i]['Unit Number']
       customerUnitNumberInput.value = data[i]['Customer Unit Number']
       for(key in data[i]) {
@@ -65,6 +73,10 @@ function searchForTruck(searchCondition) {
         }
       }
     }
+  }
+  if (currentTruckIndex === undefined) {
+    output.innerHTML = ''
+    alert('Truck ' + unitNumberToSearch + ' was not found')
   }
 }
 

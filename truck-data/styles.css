@@ -25,6 +25,10 @@ body {
   padding: 4px;
 }
 
+/* .label, .value {
+  border: 1px solid blue;
+} */
+
 .menu {
   gap: 10px;
 }
@@ -35,6 +39,7 @@ body {
   border-radius: 20px;
   border: 1px solid black;
   opacity: .5;
+  user-select: none;
 }
 
 .menu-button:hover {
