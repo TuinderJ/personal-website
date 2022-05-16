@@ -1,4 +1,5 @@
 let data = {};
+let currentTruckIndex;
 
 $.get("database.csv", function(response, status) {
   if(status=="success") {
@@ -14,9 +15,6 @@ $.get("database.csv", function(response, status) {
     }
   }
 })
-
-
-let currentTruckIndex;
 
 function searchForTruck(searchCondition) {
   const output = document.getElementById('output')
