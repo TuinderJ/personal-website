@@ -69,6 +69,10 @@ function searchForTruck(searchCondition) {
 }
 
 function newTruckForm() {
+  if (document.getElementById('new-truck-form') != null) {
+    alert('Please finish the form that you are working on first.')
+    return
+  }
   const newTruckForm = document.createElement('div');
   newTruckForm.classList.add('new-truck-form');
   newTruckForm.setAttribute('id', 'new-truck-form');
@@ -105,6 +109,10 @@ function submitNewTruck() {
 function editCurrentTruck() {
   if (currentTruckIndex === undefined) {
     alert('Please select a truck first.')
+    return
+  }
+  if (document.getElementById('new-truck-form') != null) {
+    alert('Please finish the form that you are working on first.')
     return
   }
   const unitNumberToSearch = document.getElementById('unit-number').value;
