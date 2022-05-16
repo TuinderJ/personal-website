@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Filter Test</title>
+    <title>Truck Quick Reference</title>
     <link rel="stylesheet" href="styles.css" />
     <script
       src="https://code.jquery.com/jquery-3.6.0.js"
@@ -15,7 +15,7 @@
     <script src="scripts/jquery-init.js"></script>
   </head>
   <body>
-    <main class="main-content">
+    <main class="main-content" id="main-content">
       <div class="inputs" id="inputs">
         <div class="dataset">
           <div class="label">Unit Number:</div>
@@ -28,15 +28,14 @@
           <input id="customer-unit-number"></input>
         </div>
       </div>
-      <div class="output" id='output'>
-      </div>
+      <div class="output" id='output'></div>
     </main>
     <div class="menu">
-      <button class="menu-button">Add Truck</button>
-      <button class="menu-button">Edit Truck</button>
-      <button class="menu-button">Remove Truck</button>
       <button class="menu-button">Replace Filter</button>
+      <button class="menu-button" onclick="newTruckForm()">Add Truck</button>
+      <button class="menu-button" onclick="editCurrentTruck()">Edit Current Truck</button>
+      <button class="menu-button">Remove Current Truck</button>
     </div>
+    <script src="Scripts/scripts.js"></script>
   </body>
-  <script src="Scripts/scripts.js"></script>
 </html>
