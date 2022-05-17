@@ -1,17 +1,17 @@
-let data = {};
-let currentTruckIndex;
+let data = {}
+let currentTruckIndex
 
 $.get("database.csv", function(response, status) {
   if(status=="success") {
-    data = $.csv.toObjects(response);
-    let html = '';
-    const body = document.querySelector("body");
+    data = $.csv.toObjects(response)
+    let html = ''
+    const body = document.querySelector("body")
     for(let row in data) {
-      html += '<tr>\r\n';
+      html += '<tr>\r\n'
       for(let item in data[row]) {
-        html += '<td>' + data[row][item] + '</td>\r\n';
+        html += '<td>' + data[row][item] + '</td>\r\n'
       }
-      $('#contents').html(html);
+      $('#contents').html(html)
     }
   }
 })
@@ -53,7 +53,7 @@ function searchForTruck(searchCondition) {
               const newKey = document.createElement('div')
               newKey.classList.add('label')
               newKey.innerText = key + ':'
-
+              
               const newValueContainer = document.createElement('div')
               newValueContainer.classList.add('value-container')
               
@@ -61,13 +61,33 @@ function searchForTruck(searchCondition) {
               newValue.classList.add('value')
               newValue.innerText = data[i][key]
               newValueContainer.appendChild(newValue)
-
+              
               const newDataSet = document.createElement('div')
               newDataSet.classList.add('dataset')
               newDataSet.appendChild(newKey)
               newDataSet.appendChild(newValueContainer)
               
               output.appendChild(newDataSet)
+              if (key == 'VIN Number') {
+                const newVIN8Key = document.createElement('div')
+                newVIN8Key.classList.add('label')
+                newVIN8Key.innerText = 'Last 8 of VIN:'
+                
+                const newVIN8ValueContainer = document.createElement('div')
+                newVIN8ValueContainer.classList.add('value-container')
+                
+                const newVIN8Value = document.createElement('div')
+                newVIN8Value.classList.add('value')
+                newVIN8Value.innerText = data[i][key].substring(data[i][key].length - 8)
+                newVIN8ValueContainer.appendChild(newVIN8Value)
+                
+                const newDataSet = document.createElement('div')
+                newDataSet.classList.add('dataset')
+                newDataSet.appendChild(newVIN8Key)
+                newDataSet.appendChild(newVIN8ValueContainer)
+
+                output.appendChild(newDataSet)
+              }
             }
           }
         }
@@ -85,35 +105,58 @@ function newTruckForm() {
     alert('Please finish the form that you are working on first.')
     return
   }
-  const newTruckForm = document.createElement('div');
-  newTruckForm.classList.add('new-truck-form');
-  newTruckForm.setAttribute('id', 'new-truck-form');
-  const newSubmitButton = document.createElement('button');
-  newSubmitButton.classList.add('menu-button');
-  newSubmitButton.setAttribute('onclick', 'submitNewTruck()');
-  newSubmitButton.textContent = 'Submit';
-  newTruckForm.appendChild(newSubmitButton);
-  document.body.appendChild(newTruckForm);
+  const newTruckForm = document.createElement('div')
+  newTruckForm.classList.add('new-truck-form')
+  newTruckForm.setAttribute('id', 'new-truck-form')
+  const newSubmitButton = document.createElement('button')
+  newSubmitButton.classList.add('menu-button')
+  newSubmitButton.setAttribute('onclick', 'submitNewTruck()')
+  newSubmitButton.textContent = 'Submit'
+  const newCancelButton = document.createElement('button')
+  newCancelButton.classList.add('menu-button')
+  newCancelButton.setAttribute('onclick', 'cancelNewTruck()')
+  newCancelButton.textContent = 'Cancel'
+  newTruckForm.appendChild(newSubmitButton)
+  newTruckForm.appendChild(newCancelButton)
+  document.body.appendChild(newTruckForm)
   
   for (key in data[0]) {
-    const newDataset = document.createElement('div');
-    newDataset.classList.add('dataset');
+    const newDataset = document.createElement('div')
+    newDataset.classList.add('dataset')
 
-    const newLabel = document.createElement('div');
-    newLabel.classList.add('label');
-    newLabel.innerText = key + ':';
+    const newLabel = document.createElement('div')
+    newLabel.classList.add('label')
+    newLabel.innerText = key + ':'
     
-    const newValue = document.createElement('input');
+    const newValue = document.createElement('input')
     newValue.classList.add('value')
 
-    newDataset.appendChild(newLabel);
-    newDataset.appendChild(newValue);
+    newDataset.appendChild(newLabel)
+    newDataset.appendChild(newValue)
 
-    newTruckForm.appendChild(newDataset);
+    newTruckForm.appendChild(newDataset)
   }
+
+  document.getElementById('new-truck-form').addEventListener('keypress', e => {
+    if (e.key === 'Enter') {
+      submitNewTruck()
+    }
+  })
 }
 
 function submitNewTruck() {
+  const newTruckForm = document.getElementById('new-truck-form')
+  const newTruckInfo = newTruckForm.getElementsByClassName('value')
+
+  if (newTruckInfo[0].value === '' && newTruckInfo[1].value === '') {
+    alert('Enter a unit number before submitting')
+    return
+  }
+
+  newTruckForm.remove()
+}
+
+function cancelNewTruck() {
   const newTruckForm = document.getElementById('new-truck-form');
   newTruckForm.remove();
 }
@@ -135,14 +178,19 @@ function editCurrentTruck() {
   newSubmitButton.classList.add('menu-button');
   newSubmitButton.setAttribute('onclick', 'submitTruckEdit()');
   newSubmitButton.textContent = 'Submit';
+  const newCancelButton = document.createElement('button');
+  newCancelButton.classList.add('menu-button');
+  newCancelButton.setAttribute('onclick', 'cancelNewTruck()');
+  newCancelButton.textContent = 'Cancel';
   newTruckForm.appendChild(newSubmitButton);
+  newTruckForm.appendChild(newCancelButton);
   document.body.appendChild(newTruckForm);
-
+  
   for(key in data[currentTruckIndex]) {
     const newKey = document.createElement('div');
     newKey.classList.add('label');
     newKey.innerText = key + ':';
-
+    
     const newValue = document.createElement('input');
     newValue.classList.add('value');
     newValue.value = data[currentTruckIndex][key];
@@ -154,6 +202,12 @@ function editCurrentTruck() {
     
     newTruckForm.appendChild(newDataSet);
   }
+  
+  document.getElementById('new-truck-form').addEventListener('keypress', e => {
+    if (e.key === 'Enter') {
+      submitTruckEdit()
+    }
+  })
 }
 
 function submitTruckEdit () {
@@ -170,17 +224,21 @@ function submitTruckEdit () {
   searchForTruck('Unit Number')
 }
 
-document.getElementById('unit-number').addEventListener('keypress', function(event) {
-  if(event.key === "Enter") {
+function notEnabled() {
+  alert('This function is not enabled yet.')
+}
+
+document.getElementById('unit-number').addEventListener('keypress', e => {
+  if(e.key === "Enter") {
     searchForTruck('Unit Number');
-    event.currentTarget.select();
+    e.currentTarget.select();
   }
 })
 
-document.getElementById('customer-unit-number').addEventListener('keypress', function(event) {
-  if(event.key === "Enter") {
+document.getElementById('customer-unit-number').addEventListener('keypress', e => {
+  if(e.key === "Enter") {
     searchForTruck('Customer Unit Number');
-    event.currentTarget.select();
+    e.currentTarget.select();
   }
 })
 
@@ -196,3 +254,4 @@ document.getElementById('output').addEventListener('click', e => {
     navigator.clipboard.writeText(clicked.innerText)
   }
 })
+
