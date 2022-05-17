@@ -32,11 +32,13 @@
       </div>
       <div class="output" id='output'></div>
     </main>
-    <div class="menu">
+    <div class="menu" id="menu">
       <button class="menu-button" onclick="notEnabled()">Replace Filter</button>
       <button class="menu-button" onclick="newTruckForm()">Add Truck</button>
       <button class="menu-button" onclick="editCurrentTruck()">Edit Current Truck</button>
-      <button class="menu-button" onclick="notEnabled()">Remove Current Truck</button>
+      <div id="remove-current-truck-button">
+        <button class="menu-button" onclick="removeCurrentTruck()">Remove Current Truck</button>
+      </div>
     </div>
     <script src="Scripts/scripts.js"></script>
   </body>

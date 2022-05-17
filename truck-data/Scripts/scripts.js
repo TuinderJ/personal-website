@@ -37,56 +37,58 @@ function searchForTruck(searchCondition) {
   
   
   for(let i = 0; i < data.length; i++) {
-    if(data[i][searchCondition] === unitNumberToSearch) {
-      currentTruckIndex = i
-      output.innerHTML = ''
-      const copyText = document.createElement('div')
-      copyText.classList.add('copy-text')
-      copyText.innerText = 'Left click on any value below to copy it.'
-      output.appendChild(copyText)
-      unitNumberInput.value = data[i]['Unit Number']
-      customerUnitNumberInput.value = data[i]['Customer Unit Number']
-      for(key in data[i]) {
-        if(!(key == 'Unit Number')) {
-          if(!(key == 'Customer Unit Number')) {
-            if(!data[i][key] == '') {
-              const newKey = document.createElement('div')
-              newKey.classList.add('label')
-              newKey.innerText = key + ':'
-              
-              const newValueContainer = document.createElement('div')
-              newValueContainer.classList.add('value-container')
-              
-              const newValue = document.createElement('div')
-              newValue.classList.add('value')
-              newValue.innerText = data[i][key]
-              newValueContainer.appendChild(newValue)
-              
-              const newDataSet = document.createElement('div')
-              newDataSet.classList.add('dataset')
-              newDataSet.appendChild(newKey)
-              newDataSet.appendChild(newValueContainer)
-              
-              output.appendChild(newDataSet)
-              if (key == 'VIN Number') {
-                const newVIN8Key = document.createElement('div')
-                newVIN8Key.classList.add('label')
-                newVIN8Key.innerText = 'Last 8 of VIN:'
+    if (data[i] != undefined) {
+      if (data[i][searchCondition] === unitNumberToSearch) {
+        currentTruckIndex = i
+        output.innerHTML = ''
+        const copyText = document.createElement('div')
+        copyText.classList.add('copy-text')
+        copyText.innerText = 'Left click on any value below to copy it.'
+        output.appendChild(copyText)
+        unitNumberInput.value = data[i]['Unit Number']
+        customerUnitNumberInput.value = data[i]['Customer Unit Number']
+        for(key in data[i]) {
+          if(!(key == 'Unit Number')) {
+            if(!(key == 'Customer Unit Number')) {
+              if(!data[i][key] == '') {
+                const newKey = document.createElement('div')
+                newKey.classList.add('label')
+                newKey.innerText = key + ':'
                 
-                const newVIN8ValueContainer = document.createElement('div')
-                newVIN8ValueContainer.classList.add('value-container')
+                const newValueContainer = document.createElement('div')
+                newValueContainer.classList.add('value-container')
                 
-                const newVIN8Value = document.createElement('div')
-                newVIN8Value.classList.add('value')
-                newVIN8Value.innerText = data[i][key].substring(data[i][key].length - 8)
-                newVIN8ValueContainer.appendChild(newVIN8Value)
+                const newValue = document.createElement('div')
+                newValue.classList.add('value')
+                newValue.innerText = data[i][key]
+                newValueContainer.appendChild(newValue)
                 
                 const newDataSet = document.createElement('div')
                 newDataSet.classList.add('dataset')
-                newDataSet.appendChild(newVIN8Key)
-                newDataSet.appendChild(newVIN8ValueContainer)
-
+                newDataSet.appendChild(newKey)
+                newDataSet.appendChild(newValueContainer)
+                
                 output.appendChild(newDataSet)
+                if (key == 'VIN Number') {
+                  const newVIN8Key = document.createElement('div')
+                  newVIN8Key.classList.add('label')
+                  newVIN8Key.innerText = 'Last 8 of VIN:'
+                  
+                  const newVIN8ValueContainer = document.createElement('div')
+                  newVIN8ValueContainer.classList.add('value-container')
+                  
+                  const newVIN8Value = document.createElement('div')
+                  newVIN8Value.classList.add('value')
+                  newVIN8Value.innerText = data[i][key].substring(data[i][key].length - 8)
+                  newVIN8ValueContainer.appendChild(newVIN8Value)
+                  
+                  const newDataSet = document.createElement('div')
+                  newDataSet.classList.add('dataset')
+                  newDataSet.appendChild(newVIN8Key)
+                  newDataSet.appendChild(newVIN8ValueContainer)
+
+                  output.appendChild(newDataSet)
+                }
               }
             }
           }
@@ -153,7 +155,30 @@ function submitNewTruck() {
     return
   }
 
+  let newTruck = Object.create(Object)
+  
+  let i = 0
+  for (key in data[0]) {
+    newTruck[key] = newTruckInfo[i].value
+    i++
+  }
+
+  data.push(newTruck)
+  console.log(newTruck)
   newTruckForm.remove()
+  const unitNumberInput = document.getElementById('unit-number')
+  const customerUnitNumberInput = document.getElementById('customer-unit-number')
+
+  if (newTruck['Unit Number'] != '') {
+    unitNumberInput.value = newTruck['Unit Number']
+    searchForTruck('Unit Number')
+    return
+  }
+  
+  if (newTruck['Customer Unit Number'] != '') {
+    customerUnitNumberInput.value = newTruck['Customer Unit Number']
+    searchForTruck('Customer Unit Number')
+  }
 }
 
 function cancelNewTruck() {
@@ -222,6 +247,61 @@ function submitTruckEdit () {
   newTruckForm.remove();
 
   searchForTruck('Unit Number')
+}
+
+function removeCurrentTruck () {
+  if (currentTruckIndex === undefined) {
+    alert('Please select a truck first.')
+    return
+  }
+
+  const removeButton = document.getElementById('remove-current-truck-button')
+  removeButton.innerHTML = ''
+
+  const confirmButton = document.createElement('button')
+  confirmButton.classList.add('menu-button')
+  confirmButton.setAttribute('onclick', 'confirmRemove()')
+  confirmButton.textContent = 'Confirm'
+  const cancelButton = document.createElement('button')
+  cancelButton.classList.add('menu-button')
+  cancelButton.setAttribute('onclick', 'cancelRemove()')
+  cancelButton.textContent = 'Cancel'
+
+  removeButton.appendChild(confirmButton)
+  removeButton.appendChild(cancelButton)
+}
+
+function confirmRemove() {
+  const removeButton = document.getElementById('remove-current-truck-button')
+  removeButton.innerHTML = ''
+
+  const newRemoveButton = document.createElement('button')
+  newRemoveButton.classList.add('menu-button')
+  newRemoveButton.setAttribute('onclick', 'removeCurrentTruck()')
+  newRemoveButton.textContent = 'Remove Current Truck'
+  removeButton.appendChild(newRemoveButton)
+
+  delete data[currentTruckIndex]
+  currentTruckIndex = null
+
+  const unitNumberInput = document.getElementById('unit-number')
+  unitNumberInput.value = ''
+  const customerUnitNumberInput = document.getElementById('customer-unit-number')
+  customerUnitNumberInput.value = ''
+
+  const output = document.getElementById('output')
+  output.innerHTML = ''
+}
+
+function cancelRemove() {
+  console.log('test')
+  const removeButton = document.getElementById('remove-current-truck-button')
+  removeButton.innerHTML = ''
+  const newRemoveButton = document.createElement('button')
+  newRemoveButton.classList.add('menu-button')
+  newRemoveButton.setAttribute('onclick', 'removeCurrentTruck()')
+  newRemoveButton.textContent = 'Remove Current Truck'
+  removeButton.appendChild(newRemoveButton)
 }
 
 function notEnabled() {
