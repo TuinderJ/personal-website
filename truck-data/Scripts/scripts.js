@@ -85,6 +85,7 @@ function searchForTruck(searchCondition) {
                   
                   const newDataSet = document.createElement('div')
                   newDataSet.classList.add('dataset')
+                  newDataSet.classList.add('flex')
                   newDataSet.appendChild(newVIN8Key)
                   newDataSet.appendChild(newVIN8ValueContainer)
 

@@ -13,8 +13,9 @@
 
 body {
   margin: 0;
+  padding: 1rem 0 1rem 0;
   gap: 30px;
-  align-items: flex-start;
+  justify-content: center;
 }
 
 .inputs > * ,
@@ -29,10 +30,6 @@ body {
   border-radius: 5px;
   justify-content: space-between;
   padding: 4px;
-}
-
-.menu {
-  gap: 10px;
 }
 
 .menu-button {
