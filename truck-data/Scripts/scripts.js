@@ -65,6 +65,7 @@ function searchForTruck(searchCondition) {
                 
                 const newDataSet = document.createElement('div')
                 newDataSet.classList.add('dataset')
+                newDataSet.classList.add('flex')
                 newDataSet.appendChild(newKey)
                 newDataSet.appendChild(newValueContainer)
                 
@@ -107,8 +108,13 @@ function newTruckForm() {
     alert('Please finish the form that you are working on first.')
     return
   }
+  const mainContent = document.getElementById('main-content')
+  const menu = document.getElementById('menu')
+  mainContent.style.display ='none'
+  menu.style.display ='none'
   const newTruckForm = document.createElement('div')
   newTruckForm.classList.add('new-truck-form')
+  newTruckForm.classList.add('flex')
   newTruckForm.setAttribute('id', 'new-truck-form')
   const newSubmitButton = document.createElement('button')
   newSubmitButton.classList.add('menu-button')
@@ -125,6 +131,7 @@ function newTruckForm() {
   for (key in data[0]) {
     const newDataset = document.createElement('div')
     newDataset.classList.add('dataset')
+    newDataset.classList.add('flex')
 
     const newLabel = document.createElement('div')
     newLabel.classList.add('label')
@@ -162,13 +169,17 @@ function submitNewTruck() {
     newTruck[key] = newTruckInfo[i].value
     i++
   }
-
+  
   data.push(newTruck)
-  console.log(newTruck)
   newTruckForm.remove()
   const unitNumberInput = document.getElementById('unit-number')
   const customerUnitNumberInput = document.getElementById('customer-unit-number')
-
+  
+  const mainContent = document.getElementById('main-content')
+  mainContent.style.display = 'flex'
+  const menu = document.getElementById('menu')
+  menu.style.display = 'flex'
+  
   if (newTruck['Unit Number'] != '') {
     unitNumberInput.value = newTruck['Unit Number']
     searchForTruck('Unit Number')
@@ -184,6 +195,11 @@ function submitNewTruck() {
 function cancelNewTruck() {
   const newTruckForm = document.getElementById('new-truck-form');
   newTruckForm.remove();
+
+  const mainContent = document.getElementById('main-content')
+  mainContent.style.display = 'flex'
+  const menu = document.getElementById('menu')
+  menu.style.display = 'flex'
 }
 
 function editCurrentTruck() {
@@ -195,9 +211,13 @@ function editCurrentTruck() {
     alert('Please finish the form that you are working on first.')
     return
   }
-  const unitNumberToSearch = document.getElementById('unit-number').value;
+  const mainContent = document.getElementById('main-content')
+  const menu = document.getElementById('menu')
+  mainContent.style.display ='none'
+  menu.style.display ='none'
   const newTruckForm = document.createElement('div');
   newTruckForm.classList.add('new-truck-form');
+  newTruckForm.classList.add('flex');
   newTruckForm.setAttribute('id', 'new-truck-form');
   const newSubmitButton = document.createElement('button');
   newSubmitButton.classList.add('menu-button');
@@ -222,6 +242,7 @@ function editCurrentTruck() {
     
     const newDataSet = document.createElement('div');
     newDataSet.classList.add('dataset');
+    newDataSet.classList.add('flex');
     newDataSet.appendChild(newKey);
     newDataSet.appendChild(newValue);
     
@@ -245,6 +266,11 @@ function submitTruckEdit () {
   }
 
   newTruckForm.remove();
+
+  const mainContent = document.getElementById('main-content')
+  mainContent.style.display = 'flex'
+  const menu = document.getElementById('menu')
+  menu.style.display = 'flex'
 
   searchForTruck('Unit Number')
 }

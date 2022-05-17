@@ -1,19 +1,25 @@
-body, .main-content, .inputs, .output, .dataset, .menu, .new-truck-form {
-  display: flex;
-  /* border: 1px solid black; */
+.flex {
+  display: flex
 }
 
-.main-content, .inputs, .output, .menu, .new-truck-form {
+.main-content,
+.inputs,
+.output,
+.menu,
+.new-truck-form {
   flex-direction: column;
   gap: 10px;
 }
 
 body {
+  margin: 0;
   gap: 30px;
   align-items: flex-start;
 }
 
-.inputs > * , .output > *, .new-truck-form > *{
+.inputs > * ,
+.output > *,
+.new-truck-form > *{
   flex: 1;
   gap: 5px;
 }
@@ -24,10 +30,6 @@ body {
   justify-content: space-between;
   padding: 4px;
 }
-
-/* .label, .value {
-  border: 1px solid blue;
-} */
 
 .menu {
   gap: 10px;
