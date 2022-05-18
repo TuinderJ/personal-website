@@ -1,10 +1,25 @@
+:root {
+  --main-bg-color: #fff;
+  --default-gap: 10px;
+}
+
 body {
-  margin: 0;
+  margin: 1rem;
+  background-color: var(--main-bg-color);
+}
+
+input {
+  background-color: var(--main-bg-color);
 }
 
 .flex {
   display: flex
 }  
+
+.center {
+  display: flex;
+  justify-content: center;
+}
 
 .main-content,
 .inputs,
@@ -12,12 +27,11 @@ body {
 .menu,
 .new-truck-form {
   flex-direction: column;
-  gap: 10px;
+  gap: var(--default-gap);
 }  
 
 .main-container {
-  margin: 0 auto;
-  padding: 1rem 0.5rem 1rem 0.5rem;
+  margin: 1rem auto;
   gap: 30px;
   justify-content: center;
   width: max-content;
@@ -34,7 +48,7 @@ body {
   border: 1px solid black;
   border-radius: 5px;
   justify-content: space-between;
-  padding: 4px;
+  padding: .25rem;
 }
 
 .menu-button {

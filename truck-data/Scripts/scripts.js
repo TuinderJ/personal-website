@@ -55,19 +55,15 @@ function searchForTruck(searchCondition) {
                 newKey.classList.add('label')
                 newKey.innerText = key + ':'
                 
-                const newValueContainer = document.createElement('div')
-                newValueContainer.classList.add('value-container')
-                
                 const newValue = document.createElement('div')
                 newValue.classList.add('value')
                 newValue.innerText = data[i][key]
-                newValueContainer.appendChild(newValue)
                 
                 const newDataSet = document.createElement('div')
                 newDataSet.classList.add('dataset')
                 newDataSet.classList.add('flex')
                 newDataSet.appendChild(newKey)
-                newDataSet.appendChild(newValueContainer)
+                newDataSet.appendChild(newValue)
                 
                 output.appendChild(newDataSet)
                 if (key == 'VIN Number') {
