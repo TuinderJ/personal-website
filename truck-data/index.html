@@ -13,31 +13,30 @@
     ></script>
     <script src="Scripts/jquery.csv.js"></script>
   </head>
-  <body class="flex">
-    <main class="main-content flex" id="main-content">
-      <div class="inputs flex" id="inputs">
-        <div class="dataset flex">
-          <div class="label">Unit Number:</div>
-          <div class="value-container">
-            <input
-            class= "input-value"
-            id="unit-number"
-            ></input>
+  <body>
+    <div class="main-container flex" id="main-container">
+      <main class="main-content flex" id="main-content">
+        <div class="inputs flex" id="inputs">
+          <div class="dataset flex">
+            <div class="label">Unit Number:</div>
+            <div class="value-container">
+              <input class= "input-value" id="unit-number"></input>
+            </div>
+          </div>
+          <div class="dataset flex">
+            <div class="label">Customer Unit Number:</div>
+            <input id="customer-unit-number"></input>
           </div>
         </div>
-        <div class="dataset flex">
-          <div class="label">Customer Unit Number:</div>
-          <input id="customer-unit-number"></input>
+        <div class="output flex" id='output'></div>
+      </main>
+      <div class="menu flex" id="menu">
+        <button class="menu-button" onclick="notEnabled()">Replace Filter</button>
+        <button class="menu-button" onclick="newTruckForm()">Add Truck</button>
+        <button class="menu-button" onclick="editCurrentTruck()">Edit Current Truck</button>
+        <div class="menu-button-container flex" id="remove-current-truck-button">
+          <button class="menu-button" onclick="removeCurrentTruck()">Remove Current Truck</button>
         </div>
-      </div>
-      <div class="output flex" id='output'></div>
-    </main>
-    <div class="menu flex" id="menu">
-      <button class="menu-button" onclick="notEnabled()">Replace Filter</button>
-      <button class="menu-button" onclick="newTruckForm()">Add Truck</button>
-      <button class="menu-button" onclick="editCurrentTruck()">Edit Current Truck</button>
-      <div class="menu-button-container flex" id="remove-current-truck-button">
-        <button class="menu-button" onclick="removeCurrentTruck()">Remove Current Truck</button>
       </div>
     </div>
     <script src="Scripts/scripts.js"></script>

@@ -109,25 +109,32 @@ function newTruckForm() {
     alert('Please finish the form that you are working on first.')
     return
   }
+  const mainContainer = document.getElementById('main-container')
+
   const mainContent = document.getElementById('main-content')
+
   const menu = document.getElementById('menu')
   mainContent.style.display ='none'
   menu.style.display ='none'
+
   const newTruckForm = document.createElement('div')
   newTruckForm.classList.add('new-truck-form')
   newTruckForm.classList.add('flex')
   newTruckForm.setAttribute('id', 'new-truck-form')
+
   const newSubmitButton = document.createElement('button')
   newSubmitButton.classList.add('menu-button')
   newSubmitButton.setAttribute('onclick', 'submitNewTruck()')
   newSubmitButton.textContent = 'Submit'
+
   const newCancelButton = document.createElement('button')
   newCancelButton.classList.add('menu-button')
   newCancelButton.setAttribute('onclick', 'cancelNewTruck()')
   newCancelButton.textContent = 'Cancel'
+
   newTruckForm.appendChild(newSubmitButton)
   newTruckForm.appendChild(newCancelButton)
-  document.body.appendChild(newTruckForm)
+  mainContainer.appendChild(newTruckForm)
   
   for (key in data[0]) {
     const newDataset = document.createElement('div')
@@ -212,25 +219,32 @@ function editCurrentTruck() {
     alert('Please finish the form that you are working on first.')
     return
   }
+  const mainContainer = document.getElementById('main-container')
+
   const mainContent = document.getElementById('main-content')
+
   const menu = document.getElementById('menu')
   mainContent.style.display ='none'
   menu.style.display ='none'
-  const newTruckForm = document.createElement('div');
-  newTruckForm.classList.add('new-truck-form');
-  newTruckForm.classList.add('flex');
-  newTruckForm.setAttribute('id', 'new-truck-form');
-  const newSubmitButton = document.createElement('button');
-  newSubmitButton.classList.add('menu-button');
-  newSubmitButton.setAttribute('onclick', 'submitTruckEdit()');
-  newSubmitButton.textContent = 'Submit';
-  const newCancelButton = document.createElement('button');
-  newCancelButton.classList.add('menu-button');
-  newCancelButton.setAttribute('onclick', 'cancelNewTruck()');
-  newCancelButton.textContent = 'Cancel';
-  newTruckForm.appendChild(newSubmitButton);
-  newTruckForm.appendChild(newCancelButton);
-  document.body.appendChild(newTruckForm);
+
+  const newTruckForm = document.createElement('div')
+  newTruckForm.classList.add('new-truck-form')
+  newTruckForm.classList.add('flex')
+  newTruckForm.setAttribute('id', 'new-truck-form')
+
+  const newSubmitButton = document.createElement('button')
+  newSubmitButton.classList.add('menu-button')
+  newSubmitButton.setAttribute('onclick', 'submitTruckEdit()')
+  newSubmitButton.textContent = 'Submit'
+
+  const newCancelButton = document.createElement('button')
+  newCancelButton.classList.add('menu-button')
+  newCancelButton.setAttribute('onclick', 'cancelNewTruck()')
+  newCancelButton.textContent = 'Cancel'
+
+  newTruckForm.appendChild(newSubmitButton)
+  newTruckForm.appendChild(newCancelButton)
+  mainContainer.appendChild(newTruckForm)
   
   for(key in data[currentTruckIndex]) {
     const newKey = document.createElement('div');
@@ -289,6 +303,7 @@ function removeCurrentTruck () {
   confirmButton.classList.add('menu-button')
   confirmButton.setAttribute('onclick', 'confirmRemove()')
   confirmButton.textContent = 'Confirm'
+  
   const cancelButton = document.createElement('button')
   cancelButton.classList.add('menu-button')
   cancelButton.setAttribute('onclick', 'cancelRemove()')

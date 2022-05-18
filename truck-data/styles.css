@@ -1,6 +1,10 @@
+body {
+  margin: 0;
+}
+
 .flex {
   display: flex
-}
+}  
 
 .main-content,
 .inputs,
@@ -9,9 +13,9 @@
 .new-truck-form {
   flex-direction: column;
   gap: 10px;
-}
+}  
 
-body {
+.main-container {
   margin: 0 auto;
   padding: 1rem 0.5rem 1rem 0.5rem;
   gap: 30px;
@@ -53,7 +57,7 @@ body {
 }
 
 @media (max-width: 600px) {
-  body {
+  .main-container {
     flex-direction: column-reverse;
   }
   .menu-button {
