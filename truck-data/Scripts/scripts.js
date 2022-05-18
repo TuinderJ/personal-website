@@ -332,7 +332,6 @@ function confirmRemove() {
 }
 
 function cancelRemove() {
-  console.log('test')
   const removeButton = document.getElementById('remove-current-truck-button')
   removeButton.innerHTML = ''
   const newRemoveButton = document.createElement('button')
