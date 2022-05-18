@@ -19,7 +19,7 @@ body {
 
 .inputs > * ,
 .output > *,
-.new-truck-form > *{
+.new-truck-form > * {
   flex: 1;
   gap: 5px;
 }
@@ -48,4 +48,13 @@ body {
   text-align: center;
   font-size: large;
   text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  body {
+    flex-direction: column-reverse;
+  }
+  .menu-button {
+  flex: 1;
+  }
 }
