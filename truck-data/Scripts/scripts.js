@@ -345,6 +345,10 @@ function notEnabled() {
   alert('This function is not enabled yet.')
 }
 
+function submitChanges() {
+  
+}
+
 document.getElementById('unit-number').addEventListener('keypress', e => {
   if(e.key === "Enter") {
     searchForTruck('Unit Number');
