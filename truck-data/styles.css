@@ -7,6 +7,7 @@ body {
   margin: 1rem;
   background: url(Images/Peterbilt-Picture.jpg) no-repeat center center fixed;
   background-size: cover;
+  background-color: black;
 }
 
 input {
@@ -62,12 +63,12 @@ input {
   padding: 1px 20px;
   border-radius: 20px;
   border: 1px solid black;
-  opacity: .5;
   user-select: none;
 }
 
 .menu-button:hover {
-  opacity: 1;
+  background-color: grey;
+  color: #fff;
 }
 
 .copy-text {
