@@ -5,7 +5,8 @@
 
 body {
   margin: 1rem;
-  background-color: var(--main-bg-color);
+  background: url(Images/Peterbilt-Model-389.jpg) no-repeat center center fixed;
+  background-size: cover;
 }
 
 input {
@@ -28,6 +29,9 @@ input {
 .new-truck-form {
   flex-direction: column;
   gap: var(--default-gap);
+  background-color: #fff9;
+  border-radius: 15px;
+  padding: .5rem;
 }  
 
 .main-container {
@@ -35,6 +39,7 @@ input {
   gap: 30px;
   justify-content: center;
   width: max-content;
+  align-items: flex-start;
 }
 
 .inputs > * ,
@@ -49,6 +54,7 @@ input {
   border-radius: 5px;
   justify-content: space-between;
   padding: .25rem;
+  background-color: #fff;
 }
 
 .menu-button {
