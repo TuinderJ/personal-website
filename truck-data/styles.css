@@ -79,6 +79,7 @@ input {
 @media (max-width: 600px) {
   .main-container {
     flex-direction: column-reverse;
+    align-items: stretch;
   }
   .menu-button {
   flex: 1;
