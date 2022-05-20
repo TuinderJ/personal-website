@@ -17,7 +17,13 @@ $.get("database.csv", function(response, status) {
 })
 
 function searchForTruck(searchCondition) {
-  const output = document.getElementById('output')
+  const oldOutput = document.getElementById('output')
+  if (oldOutput != undefined) {
+    oldOutput.remove()
+  }
+  
+  const mainContent = document.getElementById('main-content')
+
   const unitNumberInput = document.getElementById('unit-number')
   const customerUnitNumberInput = document.getElementById('customer-unit-number')
   let unitNumberToSearch
@@ -30,7 +36,6 @@ function searchForTruck(searchCondition) {
   }
 
   if (unitNumberToSearch === '') {
-    output.innerHTML = ''
     alert('Please enter a unit number or customer unit number.')
     return
   }
@@ -40,7 +45,11 @@ function searchForTruck(searchCondition) {
     if (data[i] != undefined) {
       if (data[i][searchCondition] === unitNumberToSearch) {
         currentTruckIndex = i
-        output.innerHTML = ''
+        const output = document.createElement('div')
+        output.classList.add('output')
+        output.classList.add('flex')
+        output.setAttribute('id','output')
+
         const copyText = document.createElement('div')
         copyText.classList.add('copy-text')
         copyText.innerText = 'Left click on any value below to copy it.'
@@ -86,6 +95,7 @@ function searchForTruck(searchCondition) {
                   newDataSet.appendChild(newVIN8ValueContainer)
 
                   output.appendChild(newDataSet)
+                  mainContent.appendChild(output)
                 }
               }
             }
@@ -95,9 +105,26 @@ function searchForTruck(searchCondition) {
     }
   }
   if (currentTruckIndex === undefined) {
-    output.innerHTML = ''
     alert('Truck ' + unitNumberToSearch + ' was not found')
   }
+
+  if (document.getElementById('output') === null) {
+    return
+  }
+
+  document.getElementById('output').addEventListener('click', e => {
+    let clicked
+    if(e.target.matches('.value')) {
+      clicked = e.target
+    }
+    if(e.target.closest('.value')) {
+      clicked = e.target
+    }
+    if(clicked != null) {
+      navigator.clipboard.writeText(clicked.innerText)
+    }
+  })
+  
 }
 
 function newTruckForm() {
@@ -362,17 +389,3 @@ document.getElementById('customer-unit-number').addEventListener('keypress', e =
     e.currentTarget.select();
   }
 })
-
-document.getElementById('output').addEventListener('click', e => {
-  let clicked
-  if(e.target.matches('.value')) {
-    clicked = e.target
-  }
-  if(e.target.closest('.value')) {
-    clicked = e.target
-  }
-  if(clicked != null) {
-    navigator.clipboard.writeText(clicked.innerText)
-  }
-})
-
