@@ -211,6 +211,12 @@ function submitNewTruck() {
   const menu = document.getElementById('menu')
   menu.style.display = 'flex'
   
+  $.ajax({
+    type: 'POST',
+    url: 'test.json',
+    data: newTruck,
+  })
+  
   if (newTruck['Unit Number'] != '') {
     unitNumberInput.value = newTruck['Unit Number']
     searchForTruck('Unit Number')
