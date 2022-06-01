@@ -15,7 +15,7 @@ input {
 }
 
 .flex {
-  display: flex
+  display: flex;
 }  
 
 .center {
@@ -56,6 +56,7 @@ input {
   justify-content: space-between;
   padding: .25rem;
   background-color: #fff;
+  gap: 1rem;
 }
 
 .value {
@@ -85,10 +86,36 @@ input {
   text-decoration: underline;
 }
 
+.multiple-trucks {
+  position: absolute;
+  background-color: #fffA;
+  gap: .5rem;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.multiple-truck {
+  background-color: #0006;
+  border-radius: 15px;
+  padding: .5rem;
+  cursor: pointer;
+}
+
+.multiple-truck:hover {
+  background-color: #000;
+}
+
 @media (max-width: 600px) {
   .main-container {
     flex-direction: column-reverse;
     align-items: stretch;
+  }
+  .multiple-trucks {
+    flex-direction: column;
   }
   .menu-button {
   flex: 1;

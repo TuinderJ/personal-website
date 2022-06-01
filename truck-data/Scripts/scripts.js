@@ -2,13 +2,13 @@ let data = {}
 let currentTruckIndex
 
 $.get("database.csv", function(response, status) {
-  if(status=="success") {
+  if (status=="success") {
     data = $.csv.toObjects(response)
     let html = ''
     const body = document.querySelector("body")
-    for(let row in data) {
+    for (let row in data) {
       html += '<tr>\r\n'
-      for(let item in data[row]) {
+      for (let item in data[row]) {
         html += '<td>' + data[row][item] + '</td>\r\n'
       }
       $('#contents').html(html)
@@ -22,14 +22,12 @@ function searchForTruck(searchCondition) {
     oldOutput.remove()
   }
   
-  const mainContent = document.getElementById('main-content')
-
   const unitNumberInput = document.getElementById('unit-number')
   const customerUnitNumberInput = document.getElementById('customer-unit-number')
   let unitNumberToSearch
   currentTruckIndex = undefined
   
-  if(searchCondition === 'Unit Number') {
+  if (searchCondition === 'Unit Number') {
     unitNumberToSearch = unitNumberInput.value
   } else if (searchCondition === 'Customer Unit Number') {
     unitNumberToSearch = customerUnitNumberInput.value
@@ -42,96 +40,154 @@ function searchForTruck(searchCondition) {
   
   let tempStorage = []
 
-  for(let i = 0; i < data.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     if (data[i] != undefined) {
-      tempStorage.push(i)
+      if (data[i][searchCondition] === unitNumberToSearch) {
+        tempStorage.push(i)
+      }
     }
   }
 
-  for(let i = 0; i < data.length; i++) {
-    if (data[i] != undefined) {
-      if (data[i][searchCondition] === unitNumberToSearch) {
-        currentTruckIndex = i
-        const output = document.createElement('div')
-        output.classList.add('output')
-        output.classList.add('flex')
-        output.setAttribute('id','output')
+  switch (tempStorage.length) {
+  case 0:
+    alert('Truck ' + unitNumberToSearch + ' was not found')
+    break
+  case 1:
+    displayTruck(tempStorage[0])
+    break
+  default:
+    const newMultipleTrucks = document.createElement('div')
+    newMultipleTrucks.classList.add('multiple-trucks')
+    newMultipleTrucks.classList.add('flex')
+    newMultipleTrucks.setAttribute('id','multiple-trucks')
+    for (i in tempStorage) {
+      const newMultipleTruck = document.createElement('div')
+      newMultipleTruck.classList.add('multiple-truck')
+      newMultipleTruck.setAttribute('id', tempStorage[i])
 
-        const copyText = document.createElement('div')
-        copyText.classList.add('copy-text')
-        copyText.innerText = 'Left click on any value below to copy it.'
-        output.appendChild(copyText)
-        unitNumberInput.value = data[i]['Unit Number']
-        customerUnitNumberInput.value = data[i]['Customer Unit Number']
-        for(key in data[i]) {
-          if(!(key == 'Unit Number')) {
-            if(!(key == 'Customer Unit Number')) {
-              if(!data[i][key] == '') {
-                const newKey = document.createElement('div')
-                newKey.classList.add('label')
-                newKey.innerText = key + ':'
-                
-                const newValue = document.createElement('div')
-                newValue.classList.add('value')
-                newValue.innerText = data[i][key]
-                
-                const newDataSet = document.createElement('div')
-                newDataSet.classList.add('dataset')
-                newDataSet.classList.add('flex')
-                newDataSet.appendChild(newKey)
-                newDataSet.appendChild(newValue)
-                
-                output.appendChild(newDataSet)
-                if (key == 'VIN Number') {
-                  const newVIN8Key = document.createElement('div')
-                  newVIN8Key.classList.add('label')
-                  newVIN8Key.innerText = 'Last 8 of VIN:'
-                  
-                  const newVIN8ValueContainer = document.createElement('div')
-                  newVIN8ValueContainer.classList.add('value-container')
-                  
-                  const newVIN8Value = document.createElement('div')
-                  newVIN8Value.classList.add('value')
-                  newVIN8Value.innerText = data[i][key].substring(data[i][key].length - 8)
-                  newVIN8ValueContainer.appendChild(newVIN8Value)
-                  
-                  const newDataSet = document.createElement('div')
-                  newDataSet.classList.add('dataset')
-                  newDataSet.classList.add('flex')
-                  newDataSet.appendChild(newVIN8Key)
-                  newDataSet.appendChild(newVIN8ValueContainer)
+      for (ii = 0; ii < 4; ii++) {
+        const newDataSet = document.createElement('div')
+        newDataSet.classList.add('dataset')
+        newDataSet.classList.add('flex')
 
-                  output.appendChild(newDataSet)
-                  mainContent.appendChild(output)
-                }
-              }
-            }
+        const newLabel = document.createElement('div')
+        const newValue = document.createElement('div')
+
+        switch (ii) {
+        case 0:
+          newLabel.textContent = 'Unit Number:'
+          newValue.textContent = data[tempStorage[i]]['Unit Number']
+          break
+        case 1:
+          newLabel.textContent = 'Customer Unit Number:'
+          newValue.textContent = data[tempStorage[i]]['Customer Unit Number']
+          break
+        case 2:
+          newLabel.textContent = 'Customer:'
+          newValue.textContent = data[tempStorage[i]]['Customer Name']
+          break
+        case 3:
+          newLabel.textContent = 'VIN:'
+          newValue.textContent = data[tempStorage[i]]['VIN Number']
+          break
+        }
+
+        newDataSet.appendChild(newLabel)
+        newDataSet.appendChild(newValue)
+        newMultipleTruck.appendChild(newDataSet)
+      }
+      newMultipleTrucks.appendChild(newMultipleTruck)
+    }
+    document.body.appendChild(newMultipleTrucks)
+
+    document.getElementById('multiple-trucks').addEventListener('click', e => {
+      if (e.target.closest('.multiple-truck')) {
+        document.getElementById('multiple-trucks').remove()
+        displayTruck(e.target.closest('.multiple-truck').id)
+      }
+    })
+    return
+  }
+}
+
+function displayTruck(i) {
+  const unitNumberInput = document.getElementById('unit-number')
+  const customerUnitNumberInput = document.getElementById('customer-unit-number')
+  const mainContent = document.getElementById('main-content')
+  currentTruckIndex = i
+  const output = document.createElement('div')
+  output.classList.add('output')
+  output.classList.add('flex')
+  output.setAttribute('id','output')
+
+  const copyText = document.createElement('div')
+  copyText.classList.add('copy-text')
+  copyText.innerText = 'Left click on any value below to copy it.'
+  output.appendChild(copyText)
+  unitNumberInput.value = data[i]['Unit Number']
+  customerUnitNumberInput.value = data[i]['Customer Unit Number']
+  for (key in data[i]) {
+    if (!(key == 'Unit Number')) {
+      if (!(key == 'Customer Unit Number')) {
+        if (!data[i][key] == '') {
+          const newKey = document.createElement('div')
+          newKey.classList.add('label')
+          newKey.innerText = key + ':'
+          
+          const newValue = document.createElement('div')
+          newValue.classList.add('value')
+          newValue.innerText = data[i][key]
+          
+          const newDataSet = document.createElement('div')
+          newDataSet.classList.add('dataset')
+          newDataSet.classList.add('flex')
+          newDataSet.appendChild(newKey)
+          newDataSet.appendChild(newValue)
+          
+          output.appendChild(newDataSet)
+          if (key == 'VIN Number') {
+            const newVIN8Key = document.createElement('div')
+            newVIN8Key.classList.add('label')
+            newVIN8Key.innerText = 'Last 8 of VIN:'
+            
+            const newVIN8ValueContainer = document.createElement('div')
+            newVIN8ValueContainer.classList.add('value-container')
+            
+            const newVIN8Value = document.createElement('div')
+            newVIN8Value.classList.add('value')
+            newVIN8Value.innerText = data[i][key].substring(data[i][key].length - 8)
+            newVIN8ValueContainer.appendChild(newVIN8Value)
+            
+            const newDataSet = document.createElement('div')
+            newDataSet.classList.add('dataset')
+            newDataSet.classList.add('flex')
+            newDataSet.appendChild(newVIN8Key)
+            newDataSet.appendChild(newVIN8ValueContainer)
+
+            output.appendChild(newDataSet)
+            mainContent.appendChild(output)
           }
         }
       }
     }
   }
-  if (currentTruckIndex === undefined) {
-    alert('Truck ' + unitNumberToSearch + ' was not found')
-  }
-
+  
   if (document.getElementById('output') === null) {
     return
   }
 
   document.getElementById('output').addEventListener('click', e => {
     let clicked
-    if(e.target.matches('.value')) {
+    if (e.target.matches('.value')) {
       clicked = e.target
     }
-    if(e.target.closest('.value')) {
+    if (e.target.closest('.value')) {
       clicked = e.target
     }
-    if(clicked != null) {
+    if (clicked != null) {
       navigator.clipboard.writeText(clicked.innerText)
     }
   })
-  
 }
 
 function newTruckForm() {
@@ -176,7 +232,6 @@ function newTruckForm() {
     newLabel.innerText = key + ':'
     
     const newValue = document.createElement('input')
-    newValue.classList.add('value')
 
     newDataset.appendChild(newLabel)
     newDataset.appendChild(newValue)
@@ -276,13 +331,12 @@ function editCurrentTruck() {
   newTruckForm.appendChild(newCancelButton)
   mainContainer.appendChild(newTruckForm)
   
-  for(key in data[currentTruckIndex]) {
+  for (key in data[currentTruckIndex]) {
     const newKey = document.createElement('div');
     newKey.classList.add('label');
     newKey.innerText = key + ':';
     
     const newValue = document.createElement('input');
-    newValue.classList.add('value');
     newValue.value = data[currentTruckIndex][key];
     
     const newDataSet = document.createElement('div');
@@ -384,14 +438,14 @@ function submitChanges() {
 }
 
 document.getElementById('unit-number').addEventListener('keypress', e => {
-  if(e.key === "Enter") {
+  if (e.key === "Enter") {
     searchForTruck('Unit Number');
     e.currentTarget.select();
   }
 })
 
 document.getElementById('customer-unit-number').addEventListener('keypress', e => {
-  if(e.key === "Enter") {
+  if (e.key === "Enter") {
     searchForTruck('Customer Unit Number');
     e.currentTarget.select();
   }
