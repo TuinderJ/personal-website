@@ -40,7 +40,14 @@ function searchForTruck(searchCondition) {
     return
   }
   
-  
+  let tempStorage = []
+
+  for(let i = 0; i < data.length; i++) {
+    if (data[i] != undefined) {
+      tempStorage.push(i)
+    }
+  }
+
   for(let i = 0; i < data.length; i++) {
     if (data[i] != undefined) {
       if (data[i][searchCondition] === unitNumberToSearch) {
