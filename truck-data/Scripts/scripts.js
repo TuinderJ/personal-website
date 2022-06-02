@@ -17,6 +17,9 @@ $.get("database.csv", function(response, status) {
 })
 
 function searchForTruck(searchCondition) {
+  const newMultipleTrucksMenu = document.getElementById('multiple-trucks')
+  if (newMultipleTrucksMenu != undefined) {return}
+  
   const oldOutput = document.getElementById('output')
   if (oldOutput != undefined) {
     oldOutput.remove()
