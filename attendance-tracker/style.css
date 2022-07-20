@@ -5,3 +5,25 @@
 .title {
   text-align: center;
 }
+
+.next-event {
+  display: flex;
+  justify-content: center;
+}
+
+.next-event>.event {
+  flex-direction: column;
+  gap: .5rem;
+  align-items: center;
+}
+
+.events {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.event {
+  display: flex;
+  gap: 1rem;
+}
