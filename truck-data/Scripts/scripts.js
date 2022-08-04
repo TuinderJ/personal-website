@@ -188,7 +188,19 @@ function displayTruck(i) {
       clicked = e.target
     }
     if (clicked != null) {
-      navigator.clipboard.writeText(clicked.innerText)
+      navigator.clipboard.writeText(clicked.innerText);
+      
+      const copyMessageBox = document.getElementsByClassName('copy-message-box');
+      copyMessageBox[0].style.top = `${e.clientY}px`;
+      copyMessageBox[0].style.left = `${e.clientX}px`;
+      copyMessageBox[0].style.display = 'initial';
+      copyMessageBox[0].style.opacity = '1';
+      setTimeout( function() {
+        copyMessageBox[0].style.opacity = '0';
+        setTimeout( function() {
+          copyMessageBox[0].style.display = 'none';
+        }, 2000);
+      }, 500);
     }
   })
 }

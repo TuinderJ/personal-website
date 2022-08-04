@@ -86,6 +86,17 @@ input {
   text-decoration: underline;
 }
 
+.copy-message-box {
+  position: absolute;
+  background-color: lightgray;
+  padding: 2px;
+  border-radius: 3px;
+  border: 1px solid black;
+  display: none;
+  opacity: 0;
+  transition: opacity 2s ease-in;
+}
+
 .multiple-trucks {
   position: absolute;
   background-color: #fffA;
