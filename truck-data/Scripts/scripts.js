@@ -195,12 +195,10 @@ function displayTruck(i) {
       copyMessageBox[0].style.left = `${e.clientX}px`;
       copyMessageBox[0].style.display = 'initial';
       copyMessageBox[0].style.opacity = '1';
+      copyMessageBox[0].style.opacity = '0';
       setTimeout( function() {
-        copyMessageBox[0].style.opacity = '0';
-        setTimeout( function() {
-          copyMessageBox[0].style.display = 'none';
-        }, 2000);
-      }, 500);
+        copyMessageBox[0].style.display = 'none';
+      }, 2000);
     }
   })
 }
