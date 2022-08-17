@@ -1,6 +1,75 @@
 * {
   margin: 0;
 }
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;  
+  color: black;
+}
+
+.nav-bar-left {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  background-color: lightgray;
+  top: 0;
+  z-index: 1;
+  padding: .5rem;
+  font-size: 20px;
+  border-radius: 0 0 5px 0;
+}
+
+.hamburger {
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.nav-list {
+  padding: 0;
+  display: none;
+  transition: all 200ms ease-in-out;
+}
+
+.nav-item {
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 5px;
+  margin: .5rem 0 .25rem 0;
+  padding: .2rem;
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+  color: black;
+}
+
+.menu-dropdown {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.dropdown-list {
+  height: 0;
+  overflow: hidden;
+  transition: height 750ms linear;
+  padding-left: 0;
+}
+
+.dropdown-list > li {
+  padding-left: .3rem;
+}
+
+.dropdown-list > li:hover {
+  background-color: gray;
+}
+
+.nav-item:hover {
+  background-color: rgb(185, 185, 185);
+}
+
 .header {
   font-weight: bold;
   font-size: 50px;
@@ -45,6 +114,7 @@ main {
   position: relative;
   border-radius: 10px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .coming-soon {
@@ -55,7 +125,7 @@ main {
   width: 100%;
   height: 100%;
   font-size: 2.5em;
-  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0,0,0,1) 100%);
+  background: radial-gradient(circle, rgba(255,255,255,.5) 0%, rgba(0,0,0,.5) 100%);
   opacity: 0;
   transition: all 250ms ease-in-out;
 }
