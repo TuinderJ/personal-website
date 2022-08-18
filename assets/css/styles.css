@@ -77,7 +77,7 @@ a {
 }
 
 .hero {
-  background: url("/assets/images/sepia-mountains.jpg");
+  background: url('/assets/images/sepia-mountains.jpg');
   width: 100vw;
   height: 750px;
   background-size: cover;
