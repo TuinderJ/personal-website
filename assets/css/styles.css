@@ -7,13 +7,16 @@ a {
   color: black;
 }
 
-body {background-color: lightgray;}
+body {
+  background-color: lightgray;
+  margin-bottom: 2rem;
+}
 
 .nav-bar-left {
   position: fixed;
   display: flex;
   flex-direction: column;
-  background-color: lightgray;
+  background-color: lightgrey;
   top: 0;
   z-index: 1;
   padding: .5rem;
@@ -95,14 +98,16 @@ main {font-size: 20px;}
   margin: 0 1rem;
 }
 
-.project-card img {width: 100%;}
+.project-card img {
+  width: 100%;
+  height: calc(100% + 5px);
+}
 
 .project-card {
   flex: 1 1 300px;
   max-width: 500px;
   text-align: center;
   transition: all 250ms ease-in-out;
-  border: 1px solid black;
   position: relative;
   border-radius: 10px;
   overflow: hidden;
@@ -125,4 +130,16 @@ main {font-size: 20px;}
   border-radius: 8px;
   padding: 4px;
   color: white;
+}
+
+@media screen and (max-width: 1180px) {
+  .hero {height: 500px;}
+}
+
+@media screen and (max-width: 480px) {
+  .hero {height: 250px;}
+  .hamburger {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 }
