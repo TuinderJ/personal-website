@@ -70,7 +70,7 @@ body {background-color: grey;}
 
 .hero {
   background: url("/assets/images/sepia-mountains.jpg");
-  width: 100vw;
+  width: 100%;
   height: 750px;
   background-size: cover;
   background-position: center;
