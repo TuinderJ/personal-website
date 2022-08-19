@@ -1,3 +1,7 @@
+:root {
+  --accent-color: blue;
+}
+
 * {margin: 0;}
 
 ul {list-style: none;}
@@ -10,6 +14,11 @@ a {
 body {
   background-color: lightgray;
   margin-bottom: 2rem;
+}
+
+header {
+  text-align: center;
+  font-size: 150%;
 }
 
 .nav-bar-left {
@@ -68,7 +77,6 @@ body {
 .header {
   font-weight: bold;
   font-size: 50px;
-  text-align: center;
 }
 
 .hero {
@@ -83,8 +91,7 @@ body {
 main {font-size: 20px;}
 
 .projects-header {
-  text-align: center;
-  background-color: blue;
+  background-color: var(--accent-color);
   color: white;
   padding: .5rem 0;
   margin-bottom: .5rem;
@@ -132,6 +139,38 @@ main {font-size: 20px;}
   color: white;
 }
 
+.about-me {
+  margin: 4rem 7.5%;
+  font-size: 120%;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.about-me header {
+  content: "About Me";
+  text-align: right;
+  font-size: 150%;
+  position: relative;
+}
+
+.about-me header:after {
+  --height: 110%;
+  position: absolute;
+  height: var(--height);
+  width: .5rem;
+  background-color: var(--accent-color);
+  border-radius: 4px;;
+  content: "";
+  top: calc((var(--height) - 100%) / (-2));
+  right: -.7rem;
+}
+
+
+
+
+
+
+
 @media screen and (max-width: 1180px) {
   .hero {height: 500px;}
 }
@@ -142,4 +181,6 @@ main {font-size: 20px;}
     width: 1.5rem;
     height: 1.5rem;
   }
+  .about-me {flex-direction: column;}
+  .about-me h2 {text-align: center;}
 }
