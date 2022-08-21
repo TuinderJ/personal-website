@@ -1,8 +1,10 @@
 :root {
-  --accent-color: blue;
+  --accent-color: darkgrey;
 }
 
 * {margin: 0;}
+
+.flex {display: flex;}
 
 ul {list-style: none;}
 
@@ -139,40 +141,53 @@ main {font-size: 20px;}
   color: white;
 }
 
-.about-me {
+.about-me,
+.contact-me {
   margin: 4rem 7.5%;
   font-size: 120%;
   display: flex;
-  gap: 1.5rem;
+  gap: 1.75rem;
 }
 
-.about-me header {
-  content: "About Me";
-  text-align: right;
-  font-size: 150%;
+.about-me header,
+.contact-me header {
+  text-align: center;
   position: relative;
 }
 
-.about-me header:after {
-  --height: 110%;
+.about-me h2, .contact-me h2 {width: 150px;}
+
+.about-me header img {
+  width: 150px;
+  border-radius: 50%;
+}
+
+.about-me header:after,
+.contact-me header:after {
+  --length: 110%;
+  --thickness: .5rem;
   position: absolute;
-  height: var(--height);
-  width: .5rem;
+  height: var(--length);
+  width: var(--thickness);
   background-color: var(--accent-color);
   border-radius: 4px;;
   content: "";
-  top: calc((var(--height) - 100%) / (-2));
-  right: -.7rem;
+  top: calc((var(--length) - 100%) / (-2));
+  right: -1rem;
 }
 
-
-
-
-
-
+.contact-me ul {
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
 
 @media screen and (max-width: 1180px) {
   .hero {height: 500px;}
+  .about-me header:after, .contact-me header:after {--length: 100%}
+  .contact-me ul {justify-content: center;}
 }
 
 @media screen and (max-width: 480px) {
@@ -181,6 +196,24 @@ main {font-size: 20px;}
     width: 1.5rem;
     height: 1.5rem;
   }
-  .about-me {flex-direction: column;}
-  .about-me h2 {text-align: center;}
+  .about-me, .contact-me {flex-direction: column;}
+  .about-me h2,
+  .contact-me h2 {
+    text-align: center;
+    width: auto;
+  }
+  .about-me header:after,
+  .contact-me header:after {
+    --length: 110%;
+    width: var(--length);
+    height: var(--thickness);
+    right: auto;
+    left: calc((var(--length) - 100%) / (-2));
+    top: auto;
+    bottom: -.5rem;
+  }
+  .contact-me ul {
+    padding: 0;
+    justify-content: center;
+  }
 }
