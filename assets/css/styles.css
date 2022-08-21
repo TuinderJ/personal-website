@@ -1,4 +1,10 @@
+:root {
+  --accent-color: darkgrey;
+}
+
 * {margin: 0;}
+
+.flex {display: flex;}
 
 ul {list-style: none;}
 
@@ -10,6 +16,11 @@ a {
 body {
   background-color: lightgray;
   margin-bottom: 2rem;
+}
+
+header {
+  text-align: center;
+  font-size: 150%;
 }
 
 .nav-bar-left {
@@ -68,7 +79,6 @@ body {
 .header {
   font-weight: bold;
   font-size: 50px;
-  text-align: center;
 }
 
 .hero {
@@ -83,8 +93,7 @@ body {
 main {font-size: 20px;}
 
 .projects-header {
-  text-align: center;
-  background-color: blue;
+  background-color: var(--accent-color);
   color: white;
   padding: .5rem 0;
   margin-bottom: .5rem;
@@ -132,8 +141,53 @@ main {font-size: 20px;}
   color: white;
 }
 
+.about-me,
+.contact-me {
+  margin: 4rem 7.5%;
+  font-size: 120%;
+  display: flex;
+  gap: 1.75rem;
+}
+
+.about-me header,
+.contact-me header {
+  text-align: center;
+  position: relative;
+}
+
+.about-me h2, .contact-me h2 {width: 150px;}
+
+.about-me header img {
+  width: 150px;
+  border-radius: 50%;
+}
+
+.about-me header:after,
+.contact-me header:after {
+  --length: 110%;
+  --thickness: .5rem;
+  position: absolute;
+  height: var(--length);
+  width: var(--thickness);
+  background-color: var(--accent-color);
+  border-radius: 4px;;
+  content: "";
+  top: calc((var(--length) - 100%) / (-2));
+  right: -1rem;
+}
+
+.contact-me ul {
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
 @media screen and (max-width: 1180px) {
   .hero {height: 500px;}
+  .about-me header:after, .contact-me header:after {--length: 100%}
+  .contact-me ul {justify-content: center;}
 }
 
 @media screen and (max-width: 480px) {
@@ -141,5 +195,25 @@ main {font-size: 20px;}
   .hamburger {
     width: 1.5rem;
     height: 1.5rem;
+  }
+  .about-me, .contact-me {flex-direction: column;}
+  .about-me h2,
+  .contact-me h2 {
+    text-align: center;
+    width: auto;
+  }
+  .about-me header:after,
+  .contact-me header:after {
+    --length: 110%;
+    width: var(--length);
+    height: var(--thickness);
+    right: auto;
+    left: calc((var(--length) - 100%) / (-2));
+    top: auto;
+    bottom: -.5rem;
+  }
+  .contact-me ul {
+    padding: 0;
+    justify-content: center;
   }
 }
