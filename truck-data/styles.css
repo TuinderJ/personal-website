@@ -10,13 +10,9 @@ body {
   background-color: black;
 }
 
-input {
-  background-color: var(--main-bg-color);
-}
+input {background-color: var(--main-bg-color);}
 
-.flex {
-  display: flex;
-}  
+.flex {display: flex;}  
 
 .center {
   display: flex;
@@ -59,13 +55,9 @@ input {
   gap: 1rem;
 }
 
-.value {
-  cursor: pointer;
-}
+.value {cursor: pointer;}
 
-.value:hover {
-  color: #00f;
-}
+.value:hover {color: #00f;}
 
 .menu-button {
   font-size: large;
@@ -116,19 +108,10 @@ input {
   cursor: pointer;
 }
 
-.multiple-truck:hover {
-  background-color: #000;
-}
+.multiple-truck:hover {background-color: #000;}
 
 @media (max-width: 600px) {
-  .main-container {
-    flex-direction: column-reverse;
-    align-items: stretch;
-  }
   .multiple-trucks {
     flex-direction: column;
-  }
-  .menu-button {
-  flex: 1;
   }
 }
