@@ -82,9 +82,9 @@ header {
 }
 
 .hero {
-  background: url("/assets/images/sepia-mountains.jpg");
+  background: url("/assets/images/hawaii.jpeg");
   width: 100%;
-  height: 950px;
+  height: 750px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
