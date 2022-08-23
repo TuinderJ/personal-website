@@ -7,7 +7,7 @@ I built this project to showcase my projects as well as grow my skills as a desi
 This project allows me to get my name out there and have an easier time networking as a dev.
 I learned a few things about colors what what goes together vs. what doesn't.
 
-# Installation
+## Installation
 
 N/A
 
@@ -17,9 +17,7 @@ Provide instructions and examples for use. Include screenshots as needed.
 
 To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+![Project Screenshot](assets/images/screenshot.png)
 
 ## Credits
 
