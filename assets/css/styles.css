@@ -81,17 +81,22 @@ header {
   padding-left: 0;
 }
 
+/* Adds padding to the items inside of the dropdown lists */
 .dropdown-list > li {padding-left: .3rem;}
 
+/* Darkens the list item boxes when they are hovered */
 .dropdown-list > li:hover {background-color: rgb(180, 180, 180);}
 
+/* Darkens the items in the main nav list */
 .nav-item:hover {background-color: rgb(200, 200, 200);}
 
+/* Makes the header text the size desired */
 .header {
   font-weight: bold;
   font-size: 50px;
 }
 
+/* Places the hero image and gives it the right shape/size */
 .hero {
   background: url("/assets/images/hawaii.jpeg");
   width: 100%;
@@ -101,8 +106,10 @@ header {
   background-repeat: no-repeat;
 }
 
+/* Sets a default text size for the main content */
 main {font-size: 20px;}
 
+/* Styles the Projects title to have the site's accent color */
 .projects-header {
   background-color: var(--accent-color);
   color: white;
@@ -110,6 +117,7 @@ main {font-size: 20px;}
   margin-bottom: .5rem;
 }
 
+/* Allows for flexbox styling on the projects container */
 .projects-container {
   display: flex;
   flex-wrap: wrap;
@@ -118,11 +126,13 @@ main {font-size: 20px;}
   margin: 0 1rem;
 }
 
+/* Forms the images in the project cards to fit the card */
 .project-card img {
   width: 100%;
   height: calc(100% + 5px);
 }
 
+/* Size/Shape of the cards. */
 .project-card {
   flex: 1 1 300px;
   max-width: 500px;
@@ -135,11 +145,13 @@ main {font-size: 20px;}
   padding-bottom: -50px;
 }
 
+/* Gives a 3d look when hovering over a card */
 .project-card:hover{
   scale: 1.01;
   box-shadow: 0 0 25px black;
 }
 
+/* Gives the title of each card and locates it at the bottom */
 .project-card::before {
   position: absolute;
   bottom: 5%;
@@ -152,6 +164,7 @@ main {font-size: 20px;}
   color: white;
 }
 
+/* Sets uniform styling for text in about and contact sections */
 .about-me,
 .contact-me {
   margin: 4rem 7.5%;
@@ -160,19 +173,23 @@ main {font-size: 20px;}
   gap: 1.75rem;
 }
 
+/* Centers the headers vertically */
 .about-me header,
 .contact-me header {
   text-align: center;
   position: relative;
 }
 
+/* Fixes the width of header text of both sections */
 .about-me h2, .contact-me h2 {width: 150px;}
 
+/* Styles the profile image under the about me header text */
 .about-me header img {
   width: 150px;
   border-radius: 50%;
 }
 
+/* Gives the bars on the sides of the about/contact titles */
 .about-me header:after,
 .contact-me header:after {
   --length: 110%;
@@ -187,6 +204,7 @@ main {font-size: 20px;}
   right: -1rem;
 }
 
+/* Styles the contact options */
 .contact-me ul {
   width: 100%;
   align-items: center;
@@ -195,12 +213,20 @@ main {font-size: 20px;}
   flex-wrap: wrap;
 }
 
+/* Sets styling for tablet size screens:
+Hero image is made shorter,
+About/Contact bars are shorter,
+Contact options are centered on the screen */
 @media screen and (max-width: 1180px) {
   .hero {height: 500px;}
   .about-me header:after, .contact-me header:after {--length: 100%}
   .contact-me ul {justify-content: center;}
 }
 
+/* Sets styling for phone sizy screens:
+Hero image is made a lot shorter,
+Hamburger menu is made smaller,
+About/Contact headings are placed on top of content and bars are placed below them */
 @media screen and (max-width: 480px) {
   .hero {height: 250px;}
   .hamburger {
