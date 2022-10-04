@@ -46,31 +46,28 @@ input {background-color: var(--main-bg-color);}
   gap: 5px;
 }
 
-.dataset {
+.dataset,
+.output button {
   border: 1px solid black;
   border-radius: 5px;
   justify-content: space-between;
   padding: .25rem;
   background-color: #fff;
   gap: 1rem;
+  font-size: 100%;
+}
+
+.output button {
+  cursor: pointer;
+}
+
+.output button:hover {
+  background-color: rgba(255, 255, 255, .7);
 }
 
 .value {cursor: pointer;}
 
 .value:hover {color: #00f;}
-
-.menu-button {
-  font-size: large;
-  padding: 1px 20px;
-  border-radius: 20px;
-  border: 1px solid black;
-  user-select: none;
-}
-
-.menu-button:hover {
-  background-color: grey;
-  color: #fff;
-}
 
 .copy-text {
   text-align: center;
