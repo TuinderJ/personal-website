@@ -40,7 +40,7 @@ function searchForTruck(searchCondition) {
   let tempStorage = [];
 
   for (let i = 0; i < data.length; i++) {
-    if (data[i] != undefined && data[i][searchCondition] === unitNumberToSearch) tempStorage.push(i);
+    if (data[i] != undefined && data[i][searchCondition].toLowerCase() === unitNumberToSearch.toLowerCase()) tempStorage.push(i);
   }
 
   switch (tempStorage.length) {
