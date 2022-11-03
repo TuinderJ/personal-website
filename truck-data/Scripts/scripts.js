@@ -24,6 +24,7 @@ function searchForTruck(searchCondition) {
 
   const unitNumberInput = document.getElementById("unit-number");
   const customerUnitNumberInput = document.getElementById("customer-unit-number");
+  const vinInput = document.getElementById("vin");
   let unitNumberToSearch;
   currentTruckIndex = undefined;
 
@@ -31,8 +32,9 @@ function searchForTruck(searchCondition) {
     unitNumberToSearch = unitNumberInput.value;
   } else if (searchCondition === "Customer Unit Number") {
     unitNumberToSearch = customerUnitNumberInput.value;
+  } else if (searchCondition === "VIN Number") {
+    unitNumberToSearch = vinInput.value;
   }
-
   if (unitNumberToSearch === "") return alert("Please enter a unit number or customer unit number.");
 
   let tempStorage = [];
@@ -106,6 +108,7 @@ function searchForTruck(searchCondition) {
 function displayTruck(i) {
   const unitNumberInput = document.getElementById("unit-number");
   const customerUnitNumberInput = document.getElementById("customer-unit-number");
+  const vinInput = document.getElementById("vin");
   const mainContent = document.getElementById("main-content");
   currentTruckIndex = i;
   const output = document.createElement("div");
@@ -118,11 +121,33 @@ function displayTruck(i) {
   copyText.innerText = "Left click on any value below to copy it.";
   output.appendChild(copyText);
   unitNumberInput.value = data[i]["Unit Number"];
+  vinInput.value = data[i]["VIN Number"];
   customerUnitNumberInput.value = data[i]["Customer Unit Number"];
   for (key in data[i]) {
     if (!(key == "Unit Number")) {
       if (!(key == "Customer Unit Number")) {
-        if (!data[i][key] == "") {
+        if (key == "VIN Number") {
+          const newVIN8Key = document.createElement("div");
+          newVIN8Key.classList.add("label");
+          newVIN8Key.innerText = "Last 8 of VIN:";
+
+          const newVIN8ValueContainer = document.createElement("div");
+          newVIN8ValueContainer.classList.add("value-container");
+
+          const newVIN8Value = document.createElement("div");
+          newVIN8Value.classList.add("value");
+          newVIN8Value.innerText = data[i][key].substring(data[i][key].length - 8);
+          newVIN8ValueContainer.appendChild(newVIN8Value);
+
+          const newDataSet = document.createElement("div");
+          newDataSet.classList.add("dataset");
+          newDataSet.classList.add("flex");
+          newDataSet.appendChild(newVIN8Key);
+          newDataSet.appendChild(newVIN8ValueContainer);
+
+          output.appendChild(newDataSet);
+          mainContent.appendChild(output);
+        } else if (!data[i][key] == "") {
           const newKey = document.createElement("div");
           newKey.classList.add("label");
           newKey.innerText = key + ":";
@@ -138,28 +163,6 @@ function displayTruck(i) {
           newDataSet.appendChild(newValue);
 
           output.appendChild(newDataSet);
-          if (key == "VIN Number") {
-            const newVIN8Key = document.createElement("div");
-            newVIN8Key.classList.add("label");
-            newVIN8Key.innerText = "Last 8 of VIN:";
-
-            const newVIN8ValueContainer = document.createElement("div");
-            newVIN8ValueContainer.classList.add("value-container");
-
-            const newVIN8Value = document.createElement("div");
-            newVIN8Value.classList.add("value");
-            newVIN8Value.innerText = data[i][key].substring(data[i][key].length - 8);
-            newVIN8ValueContainer.appendChild(newVIN8Value);
-
-            const newDataSet = document.createElement("div");
-            newDataSet.classList.add("dataset");
-            newDataSet.classList.add("flex");
-            newDataSet.appendChild(newVIN8Key);
-            newDataSet.appendChild(newVIN8ValueContainer);
-
-            output.appendChild(newDataSet);
-            mainContent.appendChild(output);
-          }
         }
       }
     }
@@ -212,6 +215,13 @@ document.getElementById("unit-number").addEventListener("keypress", e => {
 document.getElementById("customer-unit-number").addEventListener("keypress", e => {
   if (e.key === "Enter") {
     searchForTruck("Customer Unit Number");
+    e.currentTarget.select();
+  }
+});
+
+document.getElementById("vin").addEventListener("keypress", e => {
+  if (e.key === "Enter") {
+    searchForTruck("VIN Number");
     e.currentTarget.select();
   }
 });
