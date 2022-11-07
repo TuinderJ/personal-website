@@ -25,8 +25,10 @@ function searchForTruck(searchCondition) {
   const unitNumberInput = document.getElementById("unit-number");
   const customerUnitNumberInput = document.getElementById("customer-unit-number");
   const vinInput = document.getElementById("vin");
+  const last8Input = document.getElementById("last-8");
   let unitNumberToSearch;
   currentTruckIndex = undefined;
+  let last8Search = false;
 
   if (searchCondition === "Unit Number") {
     unitNumberToSearch = unitNumberInput.value;
@@ -34,13 +36,22 @@ function searchForTruck(searchCondition) {
     unitNumberToSearch = customerUnitNumberInput.value;
   } else if (searchCondition === "VIN Number") {
     unitNumberToSearch = vinInput.value;
+  } else if (searchCondition === "Last 8") {
+    unitNumberToSearch = last8Input.value;
+    last8Search = true;
   }
+
   if (unitNumberToSearch === "") return alert("Please enter a unit number or customer unit number.");
 
   let tempStorage = [];
 
   for (let i = 0; i < data.length; i++) {
-    if (data[i] != undefined && data[i][searchCondition].toLowerCase() === unitNumberToSearch.toLowerCase()) tempStorage.push(i);
+    if (last8Search) {
+      if (data[i] != undefined && data[i]["VIN Number"].toLowerCase().substring(data[i]["VIN Number"].length - 8) === unitNumberToSearch.toLowerCase()) tempStorage.push(i);
+    } else {
+      if (data[i] != undefined && data[i][searchCondition].toLowerCase() === unitNumberToSearch.toLowerCase()) tempStorage.push(i);
+    }
+    1;
   }
 
   switch (tempStorage.length) {
@@ -109,6 +120,7 @@ function displayTruck(i) {
   const unitNumberInput = document.getElementById("unit-number");
   const customerUnitNumberInput = document.getElementById("customer-unit-number");
   const vinInput = document.getElementById("vin");
+  const last8Input = document.getElementById("last-8");
   const mainContent = document.getElementById("main-content");
   currentTruckIndex = i;
   const output = document.createElement("div");
@@ -120,49 +132,32 @@ function displayTruck(i) {
   copyText.classList.add("copy-text");
   copyText.innerText = "Left click on any value below to copy it.";
   output.appendChild(copyText);
+  mainContent.appendChild(output);
   unitNumberInput.value = data[i]["Unit Number"];
   vinInput.value = data[i]["VIN Number"];
   customerUnitNumberInput.value = data[i]["Customer Unit Number"];
+  last8Input.value = data[i]["VIN Number"].substring(data[i]["VIN Number"].length - 8);
   for (key in data[i]) {
-    if (!(key == "Unit Number")) {
-      if (!(key == "Customer Unit Number")) {
-        if (key == "VIN Number") {
-          const newVIN8Key = document.createElement("div");
-          newVIN8Key.classList.add("label");
-          newVIN8Key.innerText = "Last 8 of VIN:";
+    if (key !== "Unit Number") {
+      if (key !== "Customer Unit Number") {
+        if (key !== "VIN Number") {
+          if (!data[i][key] == "") {
+            const newKey = document.createElement("div");
+            newKey.classList.add("label");
+            newKey.innerText = key + ":";
 
-          const newVIN8ValueContainer = document.createElement("div");
-          newVIN8ValueContainer.classList.add("value-container");
+            const newValue = document.createElement("div");
+            newValue.classList.add("value");
+            newValue.innerText = data[i][key];
 
-          const newVIN8Value = document.createElement("div");
-          newVIN8Value.classList.add("value");
-          newVIN8Value.innerText = data[i][key].substring(data[i][key].length - 8);
-          newVIN8ValueContainer.appendChild(newVIN8Value);
+            const newDataSet = document.createElement("div");
+            newDataSet.classList.add("dataset");
+            newDataSet.classList.add("flex");
+            newDataSet.appendChild(newKey);
+            newDataSet.appendChild(newValue);
 
-          const newDataSet = document.createElement("div");
-          newDataSet.classList.add("dataset");
-          newDataSet.classList.add("flex");
-          newDataSet.appendChild(newVIN8Key);
-          newDataSet.appendChild(newVIN8ValueContainer);
-
-          output.appendChild(newDataSet);
-          mainContent.appendChild(output);
-        } else if (!data[i][key] == "") {
-          const newKey = document.createElement("div");
-          newKey.classList.add("label");
-          newKey.innerText = key + ":";
-
-          const newValue = document.createElement("div");
-          newValue.classList.add("value");
-          newValue.innerText = data[i][key];
-
-          const newDataSet = document.createElement("div");
-          newDataSet.classList.add("dataset");
-          newDataSet.classList.add("flex");
-          newDataSet.appendChild(newKey);
-          newDataSet.appendChild(newValue);
-
-          output.appendChild(newDataSet);
+            output.appendChild(newDataSet);
+          }
         }
       }
     }
@@ -222,6 +217,12 @@ document.getElementById("customer-unit-number").addEventListener("keypress", e =
 document.getElementById("vin").addEventListener("keypress", e => {
   if (e.key === "Enter") {
     searchForTruck("VIN Number");
+    e.currentTarget.select();
+  }
+});
+document.getElementById("last-8").addEventListener("keypress", e => {
+  if (e.key === "Enter") {
+    searchForTruck("Last 8");
     e.currentTarget.select();
   }
 });
