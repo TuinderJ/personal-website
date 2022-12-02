@@ -1,18 +1,26 @@
 /* Global Variable */
-:root {--accent-color: darkgrey;}
+:root {
+  --accent-color: darkgrey;
+}
 
 /* Resetting default margins */
-* {margin: 0;}
+* {
+  margin: 0;
+}
 
 /* Utility class for flexbox */
-.flex {display: flex;}
+.flex {
+  display: flex;
+}
 
 /* Gets rid of dots on lists */
-ul {list-style: none;}
+ul {
+  list-style: none;
+}
 
 /* Gets rid of styling on a tags */
 a {
-  text-decoration: none;  
+  text-decoration: none;
   color: black;
 }
 
@@ -36,7 +44,7 @@ header {
   background-color: lightgrey;
   top: 0;
   z-index: 1;
-  padding: .5rem;
+  padding: 0.5rem;
   font-size: 20px;
   border-radius: 0 0 5px 0;
 }
@@ -49,7 +57,7 @@ header {
 
 /* Places the hero image and gives it the right shape/size */
 .hero {
-  background: url("/assets/images/hawaii.jpeg");
+  background: url('/assets/images/hawaii.jpeg');
   width: 100%;
   height: 750px;
   background-size: cover;
@@ -58,14 +66,16 @@ header {
 }
 
 /* Sets a default text size for the main content */
-main {font-size: 20px;}
+main {
+  font-size: 20px;
+}
 
 /* Styles the Projects title to have the site's accent color */
 .projects-header {
   background-color: var(--accent-color);
   color: white;
-  padding: .5rem 0;
-  margin-bottom: .5rem;
+  padding: 0.5rem 0;
+  margin-bottom: 0.5rem;
 }
 
 /* Allows for flexbox styling on the projects container */
@@ -81,6 +91,7 @@ main {font-size: 20px;}
 .project-card img {
   width: 100%;
   height: calc(100% + 5px);
+  object-fit: cover;
 }
 
 /* Size/Shape of the cards. */
@@ -97,7 +108,7 @@ main {font-size: 20px;}
 }
 
 /* Gives a 3d look when hovering over a card */
-.project-card:hover{
+.project-card:hover {
   scale: 1.01;
   box-shadow: 0 0 25px black;
 }
@@ -132,7 +143,10 @@ main {font-size: 20px;}
 }
 
 /* Fixes the width of header text of both sections */
-.about-me h2, .contact-me h2 {width: 150px;}
+.about-me h2,
+.contact-me h2 {
+  width: 150px;
+}
 
 /* Styles the profile image under the about me header text */
 .about-me header img {
@@ -144,13 +158,13 @@ main {font-size: 20px;}
 .about-me header:after,
 .contact-me header:after {
   --length: 110%;
-  --thickness: .5rem;
+  --thickness: 0.5rem;
   position: absolute;
   height: var(--length);
   width: var(--thickness);
   background-color: var(--accent-color);
-  border-radius: 4px;;
-  content: "";
+  border-radius: 4px;
+  content: '';
   top: calc((var(--length) - 100%) / (-2));
   right: -1rem;
 }
@@ -169,9 +183,16 @@ Hero image is made shorter,
 About/Contact bars are shorter,
 Contact options are centered on the screen */
 @media screen and (max-width: 1180px) {
-  .hero {height: 500px;}
-  .about-me header:after, .contact-me header:after {--length: 100%}
-  .contact-me ul {justify-content: center;}
+  .hero {
+    height: 500px;
+  }
+  .about-me header:after,
+  .contact-me header:after {
+    --length: 100%;
+  }
+  .contact-me ul {
+    justify-content: center;
+  }
 }
 
 /* Sets styling for phone sizy screens:
@@ -179,12 +200,17 @@ Hero image is made a lot shorter,
 Hamburger menu is made smaller,
 About/Contact headings are placed on top of content and bars are placed below them */
 @media screen and (max-width: 480px) {
-  .hero {height: 250px;}
+  .hero {
+    height: 250px;
+  }
   .hamburger {
     width: 1.5rem;
     height: 1.5rem;
   }
-  .about-me, .contact-me {flex-direction: column;}
+  .about-me,
+  .contact-me {
+    flex-direction: column;
+  }
   .about-me h2,
   .contact-me h2 {
     text-align: center;
@@ -198,7 +224,7 @@ About/Contact headings are placed on top of content and bars are placed below th
     right: auto;
     left: calc((var(--length) - 100%) / (-2));
     top: auto;
-    bottom: -.5rem;
+    bottom: -0.5rem;
   }
   .contact-me ul {
     padding: 0;
