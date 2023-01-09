@@ -188,11 +188,21 @@ function engineButton(buttonText, url) {
   output.prepend(engineURL);
 }
 
+document.getElementById('unit-number-button').addEventListener('click', e => {
+  e.preventDefault();
+  searchForTruck('Unit Number');
+});
+
 document.getElementById('unit-number').addEventListener('keypress', e => {
   if (e.key === 'Enter') {
     searchForTruck('Unit Number');
     e.currentTarget.select();
   }
+});
+
+document.getElementById('customer-unit-number-button').addEventListener('click', e => {
+  e.preventDefault();
+  searchForTruck('Customer Unit Number');
 });
 
 document.getElementById('customer-unit-number').addEventListener('keypress', e => {
@@ -202,12 +212,23 @@ document.getElementById('customer-unit-number').addEventListener('keypress', e =
   }
 });
 
+document.getElementById('vin-button').addEventListener('click', e => {
+  e.preventDefault();
+  searchForTruck('VIN Number');
+});
+
 document.getElementById('vin').addEventListener('keypress', e => {
   if (e.key === 'Enter') {
     searchForTruck('VIN Number');
     e.currentTarget.select();
   }
 });
+
+document.getElementById('customer-unit-number-button').addEventListener('click', e => {
+  e.preventDefault();
+  searchForTruck('Last 8');
+});
+
 document.getElementById('last-8').addEventListener('keypress', e => {
   if (e.key === 'Enter') {
     searchForTruck('Last 8');
