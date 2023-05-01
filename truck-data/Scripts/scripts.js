@@ -31,13 +31,13 @@ function searchForTruck(searchCondition) {
   let last8Search = false;
 
   if (searchCondition === 'Unit Number') {
-    unitNumberToSearch = unitNumberInput.value;
+    unitNumberToSearch = unitNumberInput.value.trim().replace('-', '');
   } else if (searchCondition === 'Customer Unit Number') {
-    unitNumberToSearch = customerUnitNumberInput.value;
+    unitNumberToSearch = customerUnitNumberInput.value.trim();
   } else if (searchCondition === 'VIN Number') {
-    unitNumberToSearch = vinInput.value;
+    unitNumberToSearch = vinInput.value.trim();
   } else if (searchCondition === 'Last 8') {
-    unitNumberToSearch = last8Input.value;
+    unitNumberToSearch = last8Input.value.trim();
     last8Search = true;
   }
 
