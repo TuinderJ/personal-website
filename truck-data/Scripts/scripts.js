@@ -13,6 +13,13 @@ $.get('database.csv', function (response, status) {
       $('#contents').html(html);
     }
   }
+}).then(() => {
+  const queryParams = new URLSearchParams(`?${window.location.href.split('?')[1]}`);
+  const unitNumber = queryParams.get('unitNumber');
+  if (unitNumber) {
+    document.getElementById('unit-number').value = unitNumber;
+    searchForTruck('Unit Number');
+  }
 });
 
 function searchForTruck(searchCondition) {
