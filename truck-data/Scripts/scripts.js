@@ -48,7 +48,7 @@ function searchForTruck(searchCondition) {
     last8Search = true;
   }
 
-  if (unitNumberToSearch === '') return alert('Please enter a unit number or customer unit number.');
+  if (unitNumberToSearch === '') return alert('Please enter a search condition.');
 
   let tempStorage = [];
 
