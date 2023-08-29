@@ -113,7 +113,7 @@ function searchForTruck(searchCondition) {
       }
       document.body.appendChild(newMultipleTrucks);
 
-      document.getElementById('multiple-trucks').addEventListener('click', e => {
+      document.getElementById('multiple-trucks').addEventListener('click', (e) => {
         if (e.target.closest('.multiple-truck')) {
           document.getElementById('multiple-trucks').remove();
           displayTruck(e.target.closest('.multiple-truck').id);
@@ -175,7 +175,7 @@ function displayTruck(i) {
 
   if (document.getElementById('output') === null) return;
 
-  document.getElementById('output').addEventListener('click', e => {
+  document.getElementById('output').addEventListener('click', (e) => {
     let clicked;
     if (e.target.matches('.value')) clicked = e.target;
     if (e.target.closest('.value')) clicked = e.target;
@@ -188,57 +188,59 @@ function displayTruck(i) {
 function engineButton(buttonText, url) {
   const engineURL = document.createElement('button');
   engineURL.textContent = buttonText;
-  engineURL.addEventListener('click', e => {
+  engineURL.addEventListener('click', (e) => {
     e.preventDefault();
     window.open(url, '_blank');
   });
   output.prepend(engineURL);
 }
 
-document.getElementById('unit-number-button').addEventListener('click', e => {
+document.getElementById('unit-number-button').addEventListener('click', (e) => {
   e.preventDefault();
   searchForTruck('Unit Number');
 });
 
-document.getElementById('unit-number').addEventListener('keypress', e => {
+document.getElementById('unit-number').addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     searchForTruck('Unit Number');
     e.currentTarget.select();
   }
 });
 
-document.getElementById('customer-unit-number-button').addEventListener('click', e => {
+document.getElementById('customer-unit-number-button').addEventListener('click', (e) => {
   e.preventDefault();
   searchForTruck('Customer Unit Number');
 });
 
-document.getElementById('customer-unit-number').addEventListener('keypress', e => {
+document.getElementById('customer-unit-number').addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     searchForTruck('Customer Unit Number');
     e.currentTarget.select();
   }
 });
 
-document.getElementById('vin-button').addEventListener('click', e => {
+document.getElementById('vin-button').addEventListener('click', (e) => {
   e.preventDefault();
   searchForTruck('VIN Number');
 });
 
-document.getElementById('vin').addEventListener('keypress', e => {
+document.getElementById('vin').addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     searchForTruck('VIN Number');
     e.currentTarget.select();
   }
 });
 
-document.getElementById('customer-unit-number-button').addEventListener('click', e => {
+document.getElementById('customer-unit-number-button').addEventListener('click', (e) => {
   e.preventDefault();
   searchForTruck('Last 8');
 });
 
-document.getElementById('last-8').addEventListener('keypress', e => {
+document.getElementById('last-8').addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     searchForTruck('Last 8');
     e.currentTarget.select();
   }
 });
+
+document.getElementById('unit-number').focus();
