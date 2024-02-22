@@ -39,6 +39,7 @@ function searchForTruck(searchCondition) {
 
   if (searchCondition === 'Unit Number') {
     unitNumberToSearch = unitNumberInput.value.trim().replace('-', '');
+    if (unitNumberToSearch.length === 3) unitNumberToSearch = '272' + unitNumberToSearch;
   } else if (searchCondition === 'Customer Unit Number') {
     unitNumberToSearch = customerUnitNumberInput.value.trim();
   } else if (searchCondition === 'VIN Number') {
