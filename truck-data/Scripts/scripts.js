@@ -20,6 +20,11 @@ $.get('database.csv', function (response, status) {
     document.getElementById('unit-number').value = unitNumber;
     searchForTruck('Unit Number');
   }
+  const customerUnitNumber = queryParams.get('customerUnitNumber');
+  if (customerUnitNumber) {
+    document.getElementById('customer-unit-number').value = customerUnitNumber;
+    searchForTruck('Customer Unit Number');
+  }
 });
 
 function searchForTruck(searchCondition) {
