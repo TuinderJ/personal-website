@@ -84,7 +84,7 @@ function searchForTruck(searchCondition) {
         newMultipleTruck.classList.add('multiple-truck');
         newMultipleTruck.setAttribute('id', tempStorage[i]);
 
-        for (ii = 0; ii < 4; ii++) {
+        for (ii = 0; ii < 5; ii++) {
           const newDataSet = document.createElement('div');
           newDataSet.classList.add('dataset');
           newDataSet.classList.add('flex');
@@ -94,18 +94,22 @@ function searchForTruck(searchCondition) {
 
           switch (ii) {
             case 0:
+              newLabel.textContent = 'Model:';
+              newValue.textContent = data[tempStorage[i]]['Vehicle Model'];
+              break;
+            case 1:
               newLabel.textContent = 'Unit Number:';
               newValue.textContent = data[tempStorage[i]]['Unit Number'];
               break;
-            case 1:
+            case 2:
               newLabel.textContent = 'Customer Unit Number:';
               newValue.textContent = data[tempStorage[i]]['Customer Unit Number'];
               break;
-            case 2:
+            case 3:
               newLabel.textContent = 'Customer:';
               newValue.textContent = data[tempStorage[i]]['Customer Name'];
               break;
-            case 3:
+            case 4:
               newLabel.textContent = 'VIN:';
               newValue.textContent = data[tempStorage[i]]['VIN Number'];
               break;
